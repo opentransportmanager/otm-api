@@ -1,7 +1,7 @@
 # OpenTransportManager master API
 
 ## Requirements
--   Docker 17.3+
+-   Docker
 -   TBD
 
 ## Installation
@@ -30,7 +30,7 @@ cd laradock
 cp env-example .env
 ```
 
-Build nad start docker services
+Build and start docker services
 
 ```
 docker-compose up -d
@@ -42,23 +42,11 @@ Your application is by default accesible at
 http://localhost:80
 ```
 
-If you've edited any docker files, you might need to rebuild specific images
-
-```
-docker-compose build <service_name>
-```
-
-If you need to access terminal inside of docker, then type
-
-```
-docker-compose exec workspace bash
-```
-
 Available docker services
 - php-fpm
 - postgres
 - redis
-- nginx
-- workspace (contains a lot of tools e.g. npm, composer and drivers, might require some cleanup in the feature)
+- webserver (nginx)
+
 
 
