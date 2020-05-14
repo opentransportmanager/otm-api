@@ -18,16 +18,8 @@ cp .env_example .env
 ```
 
 Generate your app key
-
 ```
 php artisan key:generate
-```
-
-Enter laradock folder and copy env-example file into .env
-
-```
-cd laradock
-cp env-example .env
 ```
 
 Build and start docker services
@@ -39,14 +31,15 @@ docker-compose up -d
 Your application is by default accesible at
 
 ```
-http://localhost:80
+http://localhost:8000
 ```
 
 Available docker services
-- php-fpm
-- postgres
-- redis
+- php-fpm (with redis and pgsql drivers installed)
+- postgres (port 8004)
 - webserver (nginx)
+- redis
+
 
 
 
