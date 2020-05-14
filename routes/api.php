@@ -17,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/', function () {
+    echo 'OpenTransportManager API';
+});
+
+Route::fallback(function () {
+    return redirect()->to('https://opentransportmanager.github.io/otm-docs/');
+});
