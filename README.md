@@ -12,6 +12,11 @@ Clone this repository
 git clone https://github.com/opentransportmanager/otm-api.git
 ```
 
+Install necessary dependencies
+```
+composer install
+```
+
 In the root of a project copy .env.example into .env
 ```
 cp .env_example .env
