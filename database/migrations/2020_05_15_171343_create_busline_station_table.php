@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,7 +15,7 @@ class CreateBuslineStationTable extends Migration
      */
     public function up()
     {
-        Schema::create('busline_station', function (Blueprint $table) {
+        Schema::create('busline_station', function (Blueprint $table): void {
             $table->id();
             $table->foreignId('busline_id')->constrained();
             $table->foreignId('station_id')->constrained();
