@@ -18,7 +18,7 @@ class CreatePathStationTable extends Migration
         Schema::create('path_station', function (Blueprint $table): void {
             $table->id();
             $table->foreignId('path_id')->constrained();
-            $table->foreignID('station_id')->constrained();
+            $table->foreignId('station_id')->constrained();
             $table->timestamps();
         });
     }
