@@ -10,10 +10,8 @@ class CreateBuslinesTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('buslines', function (Blueprint $table): void {
             $table->id();
@@ -24,10 +22,8 @@ class CreateBuslinesTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('buslines');
     }
