@@ -15,6 +15,7 @@ class UpdateStation extends FormRequest
     {
         return true;
     }
+
     /**
      * Get the validation rules that apply to the request.
      */
@@ -22,8 +23,8 @@ class UpdateStation extends FormRequest
     {
         return [
             [
-                'name' => 'unique|max:50|min:3|required|string'
-            ]
+                'name' => 'unique|max:50|min:3|required|string',
+            ],
         ];
     }
 }

@@ -7,12 +7,12 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Station
+ * Station model.
  *
- * @property int $id
- * @property string $name
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int                             $id
+ * @property string                          $name
+ * @property null|\Illuminate\Support\Carbon $created_at
+ * @property null|\Illuminate\Support\Carbon $updated_at
  */
 class Station extends Model
 {
