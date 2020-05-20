@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+
 /**
  * App\Station
  *
@@ -15,5 +16,5 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Station extends Model
 {
-    //
+    protected $fillable = ['name'];
 }

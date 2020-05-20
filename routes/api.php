@@ -25,3 +25,6 @@ Route::get('/', function () {
 Route::fallback(function () {
     return redirect()->to('https://opentransportmanager.github.io/otm-docs/');
 });
+
+Route::get('stations/subscribed', 'StationController@subscribed');
+Route::resource('stations', 'StationController')->except(['edit', 'create']);
