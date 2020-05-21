@@ -24,8 +24,6 @@ class StationController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param App\Http\Requests\StoreStation $request
      */
     public function store(StoreStation $request): JsonResponse
     {
@@ -36,8 +34,6 @@ class StationController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param App\Station $station
      */
     public function show(Station $station): JsonResponse
     {
@@ -46,8 +42,6 @@ class StationController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param App\Http\Requests\UpdateStation $request
      */
     public function update(UpdateStation $request, Station $station): JsonResponse
     {
@@ -58,8 +52,6 @@ class StationController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param App\Station $station
      */
     public function destroy(Station $station): JsonResponse
     {
