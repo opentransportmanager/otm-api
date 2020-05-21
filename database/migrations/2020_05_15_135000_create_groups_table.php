@@ -6,16 +6,16 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBuslinesTable extends Migration
+class CreateGroupsTable extends Migration
 {
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('buslines', function (Blueprint $table): void {
+        Schema::create('groups', function (Blueprint $table): void {
             $table->id();
-            $table->string('number')->unique();
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ class CreateBuslinesTable extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('buslines');
+        Schema::dropIfExists('groups');
     }
 }

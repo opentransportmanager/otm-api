@@ -19,7 +19,7 @@ class CreateTimetablesTable extends Migration
             $table->id();
             $table->integer('revision')->unique();
             $table->json('data');
-            $table->bool('is_published')->default(0);
+            $table->boolean('is_published')->default(0);
             $table->timestamps();
         });
     }
