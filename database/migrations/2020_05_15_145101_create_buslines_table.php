@@ -16,6 +16,7 @@ class CreateBuslinesTable extends Migration
         Schema::create('buslines', function (Blueprint $table): void {
             $table->id();
             $table->string('number');
+            $table->foreignId('group_id')->constrained();
             $table->timestamps();
         });
     }

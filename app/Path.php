@@ -5,15 +5,45 @@ declare(strict_types=1);
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon as Carbon;
 
 /**
  * Path model.
  *
- * @property int                             $id
- * @property int                             $busline_id
- * @property null|\Illuminate\Support\Carbon $created_at
- * @property null|\Illuminate\Support\Carbon $updated_at
+ * @property int                  $id
+ * @property int                  $busline_id
+ * @property Carbon|null          $created_at
+ * @property Carbon|null          $updated_at
+ * @property Collection|Station[] $stations
+ * @property Collection|Station[] $courses
+ * @property Busline              $busline
  */
 class Path extends Model
 {
+    /**
+     * Returns an instance of (many-to-many) relation with Station model.
+     */
+    public function stations(): BelongsToMany
+    {
+        return $this->belongsToMany(Station::class);
+    }
+
+    /**
+     * Returns an instance of (one-to-many) relation with Course model.
+     */
+    public function courses(): HasMany
+    {
+        return $this->hasMany(Course::class);
+    }
+
+    /**
+     * Returns an instance of (inverse one-to-many) relation with Busline model.
+     */
+    public function busline(): BelongsTo
+    {
+        return $this->belongsTo(Busline::class);
+    }
 }
