@@ -19,7 +19,7 @@ class StationController extends Controller
     {
         $stations = Station::all();
 
-        return response()->json([$stations], Response::HTTP_CREATED);
+        return response()->json([$stations], Response::HTTP_OK);
     }
 
     /**
@@ -29,13 +29,15 @@ class StationController extends Controller
      */
     public function store(StoreStation $request): JsonResponse
     {
-        Station::store($request->validated());
+        Station::create($request->validated());
 
         return response()->json(['message' => 'Station created succesfully'], Response::HTTP_CREATED);
     }
 
     /**
      * Display the specified resource.
+     *
+     * @param App\Station $station
      */
     public function show(Station $station): JsonResponse
     {
@@ -56,6 +58,8 @@ class StationController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @param App\Station $station
      */
     public function destroy(Station $station): JsonResponse
     {
