@@ -13,14 +13,10 @@ class AuthenticationController extends Controller
 {
     public function login(AuthenticationRequest $request): JsonResponse
     {
-
         $user = User::where('email', $request->email)->first();
 
-
         if (!$user || !Hash::check($request->password, $user->password)) {
-            return response([
-                'message' => ['These credentials do not match our records.']
-            ], 404);
+            return response()->json('These credentials do not match our records.', 404);
         }
 
         $token = $user->createToken('my-app-token')->plainTextToken;
