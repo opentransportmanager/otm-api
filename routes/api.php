@@ -28,3 +28,4 @@ Route::fallback(function () {
 
 Route::get('stations/subscribed', 'StationController@subscribed');
 Route::resource('stations', 'StationController')->except(['edit', 'create']);
+Route::resource('buslines', 'BuslineController')->except(['edit', 'create']);
