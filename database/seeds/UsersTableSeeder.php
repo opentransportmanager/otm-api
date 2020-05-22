@@ -13,7 +13,7 @@ class UsersTableSeeder extends Seeder
         $items = [
             ['name' => 'admin', 'email' => 'admin@example.com', 'password' => Hash::make('admin')]
         ];
-        foreach ($items as $item){
+        foreach ($items as $item) {
             User::updateOrCreate(['email' => $item['email']], $item);
         }
     }

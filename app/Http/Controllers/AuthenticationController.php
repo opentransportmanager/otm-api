@@ -4,16 +4,18 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AuthenticationRequest;
 use App\User;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class AuthenticationController extends Controller
 {
-    public function login(Request $request): JsonResponse
+    public function login(AuthenticationRequest $request): JsonResponse
     {
+
         $user = User::where('email', $request->email)->first();
+
 
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response([
