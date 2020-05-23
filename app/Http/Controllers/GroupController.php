@@ -5,18 +5,31 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Group;
+use App\Http\Requests\StoreGroup;
+use App\Http\Requests\UpdateGroup;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class GroupController extends Controller
 {
     /**
+     * Lists all resources.
+     */
+    public function index(): JsonResponse
+    {
+        $groups = Group::all();
+
+        return response()->json($groups, Response::HTTP_OK);
+    }
+
+    /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): JsonResponse
+    public function store(StoreGroup $request): JsonResponse
     {
-        return response()->json([], Response::HTTP_NOT_IMPLEMENTED);
+        Group::create($request->validated());
+
+        return response()->json(['message' => 'Group created successfully'], Response::HTTP_CREATED);
     }
 
     /**
@@ -24,15 +37,17 @@ class GroupController extends Controller
      */
     public function show(Group $group): JsonResponse
     {
-        return response()->json([], Response::HTTP_NOT_IMPLEMENTED);
+        return response()->json($group, Response::HTTP_OK);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Group $group): JsonResponse
+    public function update(UpdateGroup $request, Group $group): JsonResponse
     {
-        return response()->json([], Response::HTTP_NOT_IMPLEMENTED);
+        $group->update($request->validated());
+
+        return response()->json(['message' => 'Group updated succesfully'], Response::HTTP_OK);
     }
 
     /**
@@ -40,6 +55,6 @@ class GroupController extends Controller
      */
     public function destroy(Group $group): JsonResponse
     {
-        return response()->json([], Response::HTTP_NOT_IMPLEMENTED);
+        return response()->json([], Response::HTTP_OK);
     }
 }

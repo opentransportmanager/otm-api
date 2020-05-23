@@ -23,3 +23,4 @@ Route::fallback(function () {
 
 Route::resource('stations', 'StationController')->except(['edit', 'create']);
 Route::resource('buslines', 'BuslineController')->except(['edit', 'create']);
+Route::resource('groups', 'GroupController')->except(['edit', 'create']);
