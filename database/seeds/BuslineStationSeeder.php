@@ -15,7 +15,7 @@ class BuslineStationSeeder extends Seeder
     {
         $stations = Station::all();
 
-        Busline::all()->each(function ($busline) use ($stations) {
+        Busline::all()->each(function ($busline) use ($stations): void {
             $busline->stations()->attach(
                 $stations->random(rand(8, 16))->pluck('id')->toArray()
             );
