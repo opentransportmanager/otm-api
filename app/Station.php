@@ -54,6 +54,6 @@ class Station extends Model
      */
     public function buslines(): BelongsToMany
     {
-        return $this->belongsToMany(Busline::class);
+        return $this->belongsToMany(Busline::class)->withTimestamps();
     }
 }
