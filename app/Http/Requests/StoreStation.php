@@ -21,7 +21,7 @@ class StoreStation extends BaseRequest
     {
         return [
             'name' => 'required|string|min:3|max:50',
-            'position' => 'required'
+            'position' => 'required',
         ];
     }
 }

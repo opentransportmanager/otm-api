@@ -19,7 +19,7 @@ class StationController extends Controller
     {
         $stations = Station::all();
 
-        return response()->json([$stations], Response::HTTP_OK);
+        return response()->json($stations, Response::HTTP_OK);
     }
 
     /**
