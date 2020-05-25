@@ -13,12 +13,16 @@ class PathStationSeeder extends Seeder
      */
     public function run(): void
     {
-        $stations = Station::all();
+        $station_ids = Station::all()->pluck('id');
 
-        Path::all()->each(function ($path) use ($stations): void {
-            $path->stations()->attach(
-                $stations->random(rand(8, 16))->pluck('id')->toArray()
-            );
+        Path::all()->each(function ($path) use ($station_ids): void {
+            $random_station_ids = $station_ids->random(rand(6, 12));
+            foreach ($random_station_ids as $station_id) {
+                $path->stations()->attach(
+                    $station_id,
+                    ['travel_time' => rand(0, 30)]
+                );
+            }
         });
     }
 }
