@@ -29,3 +29,6 @@ Route::fallback(function () {
 });
 
 Route::post('/login', 'AuthenticationController@login');
+Route::resource('stations', 'StationController')->except(['edit', 'create']);
+Route::resource('buslines', 'BuslineController')->except(['edit', 'create']);
+Route::resource('groups', 'GroupController')->except(['edit', 'create']);

@@ -8,11 +8,13 @@ class DatabaseSeeder extends Seeder
 {
     /**
      * Seed the application's database.
-     *
-     * @return void
      */
     public function run(): void
     {
         $this->call(UsersTableSeeder::class);
+        $this->call(BuslineSeeder::class);
+        $this->call(StationSeeder::class);
+        $this->call(GroupSeeder::class);
+        $this->call(BuslineStationSeeder::class);
     }
 }
