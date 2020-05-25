@@ -28,7 +28,7 @@ class Path extends Model
      */
     public function stations(): BelongsToMany
     {
-        return $this->belongsToMany(Station::class);
+        return $this->belongsToMany(Station::class)->withTimestamps()->withPivot('travel_time');
     }
 
     /**
