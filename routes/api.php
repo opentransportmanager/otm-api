@@ -1,5 +1,8 @@
 <?php
 
+declare(strict_types=1);
+
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::middleware('auth:sanctum')->group(function() {
+    Route::get('/users', 'UserController@users');
+});
+
 Route::get('/', function () {
     echo 'OpenTransportManager API';
 });
@@ -21,6 +28,7 @@ Route::fallback(function () {
     return redirect()->to('https://opentransportmanager.github.io/otm-docs/');
 });
 
+Route::post('/login', 'AuthenticationController@login');
 Route::resource('stations', 'StationController')->except(['edit', 'create']);
 Route::resource('buslines', 'BuslineController')->except(['edit', 'create']);
 Route::resource('groups', 'GroupController')->except(['edit', 'create']);
