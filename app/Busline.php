@@ -6,7 +6,6 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon as Carbon;
 
@@ -19,18 +18,9 @@ use Illuminate\Support\Carbon as Carbon;
  * @property Carbon|null          $updated_at
  * @property Collection|Station[] $stations
  * @property Collection|Path[]    $paths
- * @property Group                $group
  */
 class Busline extends Model
 {
-    /**
-     * Returns an instance of (many-to-many) relation with Busline class.
-     */
-    public function stations(): BelongsToMany
-    {
-        return $this->belongsToMany(Station::class)->withTimestamps();
-    }
-
     /**
      * Returns an instance of (one-to-many) relation with Busline class.
      */
