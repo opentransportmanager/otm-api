@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call(BuslineSeeder::class);
         $this->call(StationSeeder::class);
         $this->call(GroupSeeder::class);
-        $this->call(BuslineStationSeeder::class);
+        $this->call(PathSeeder::class);
+        $this->call(PathStationSeeder::class);
     }
 }
