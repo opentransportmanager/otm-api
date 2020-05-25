@@ -12,7 +12,7 @@ class StationSeeder extends Seeder
      */
     public function run(): void
     {
-        factory(Station::class, 50)->create()->each(function ($station): void {
+        factory(Station::class, 50)->create()->each(function (Station $station): void {
             $station->save(factory(Station::class)->make()->toArray());
         });
     }

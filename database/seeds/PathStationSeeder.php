@@ -15,7 +15,7 @@ class PathStationSeeder extends Seeder
     {
         $station_ids = Station::all()->pluck('id');
 
-        Path::all()->each(function ($path) use ($station_ids): void {
+        Path::all()->each(function (Path $path) use ($station_ids): void {
             $random_station_ids = $station_ids->random(rand(6, 12));
             foreach ($random_station_ids as $station_id) {
                 $path->stations()->attach(
