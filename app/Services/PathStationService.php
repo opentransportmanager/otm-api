@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\Path;
+use App\Station;
 
 class PathStationService
 {
@@ -33,12 +34,14 @@ class PathStationService
      */
     public function showAttachedStations(Path $path): array
     {
-        $stations = $path->stations->toArray();
+        $stations = $path->stations;
 
-        foreach ($stations as $key => $val) {
-            $stations[$key]['travel_time'] = $path->stations()->wherePivot('station_id', '=', $val['id'])->first()->pivot->travel_time;
-        }
+        $stations->map(function (Station $station): Station {
+            $station['travel_time'] = $station->pivot->travel_time;
 
-        return $stations;
+            return $station;
+        });
+
+        return $stations->toArray();
     }
 }

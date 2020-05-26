@@ -47,7 +47,7 @@ class StationController extends Controller
     {
         $station->update($request->validated());
 
-        return response()->json(['message' => __('messages.station.created')]);
+        return response()->json(['message' => __('messages.station.updated')]);
     }
 
     /**
