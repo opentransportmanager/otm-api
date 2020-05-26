@@ -25,7 +25,7 @@ class PathStationController extends Controller
     {
         $this->pathStationService->attachStations($request->validated(), $path);
 
-        return response()->json(['message' => 'Stations attached successfully'], Response::HTTP_CREATED);
+        return response()->json(['message' => __('messages.path_station.attached')], Response::HTTP_CREATED);
     }
 
     /**
@@ -35,7 +35,7 @@ class PathStationController extends Controller
     {
         $this->pathStationService->detachStations($request->validated(), $path);
 
-        return response()->json(['message' => 'Stations detached successfully'], Response::HTTP_OK);
+        return response()->json(['message' => __('messages.path_station.detached')]);
     }
 
     /**
@@ -45,6 +45,6 @@ class PathStationController extends Controller
     {
         $stations = $this->pathStationService->showAttachedStations($path);
 
-        return response()->json($stations, Response::HTTP_OK);
+        return response()->json($stations);
     }
 }

@@ -19,7 +19,7 @@ class GroupController extends Controller
     {
         $groups = Group::all();
 
-        return response()->json($groups, Response::HTTP_OK);
+        return response()->json($groups);
     }
 
     /**
@@ -29,7 +29,7 @@ class GroupController extends Controller
     {
         Group::create($request->validated());
 
-        return response()->json(['message' => 'Group created successfully'], Response::HTTP_CREATED);
+        return response()->json(['message' => __('messages.group.created')], Response::HTTP_CREATED);
     }
 
     /**
@@ -37,7 +37,7 @@ class GroupController extends Controller
      */
     public function show(Group $group): JsonResponse
     {
-        return response()->json($group, Response::HTTP_OK);
+        return response()->json($group);
     }
 
     /**
@@ -47,7 +47,7 @@ class GroupController extends Controller
     {
         $group->update($request->validated());
 
-        return response()->json(['message' => 'Group updated succesfully'], Response::HTTP_OK);
+        return response()->json(['message' => __('messages.group.updated')]);
     }
 
     /**
@@ -55,6 +55,8 @@ class GroupController extends Controller
      */
     public function destroy(Group $group): JsonResponse
     {
-        return response()->json([], Response::HTTP_OK);
+        $group->delete();
+
+        return response()->json(['message' => __('messages.group.deleted')]);
     }
 }

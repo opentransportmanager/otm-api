@@ -19,7 +19,7 @@ class PathController extends Controller
     {
         $paths = Path::all();
 
-        return response()->json($paths, Response::HTTP_OK);
+        return response()->json($paths);
     }
 
     /**
@@ -29,7 +29,7 @@ class PathController extends Controller
     {
         Path::create($request->validated());
 
-        return response()->json(['message' => 'Path created successfully'], Response::HTTP_CREATED);
+        return response()->json(['message' => __('messages.path.created')], Response::HTTP_CREATED);
     }
 
     /**
@@ -37,7 +37,7 @@ class PathController extends Controller
      */
     public function show(Path $path): JsonResponse
     {
-        return response()->json($path, Response::HTTP_OK);
+        return response()->json($path);
     }
 
     /**
@@ -47,7 +47,7 @@ class PathController extends Controller
     {
         $path->update($request->validated());
 
-        return response()->json(['message' => 'Path updated succesfully'], Response::HTTP_OK);
+        return response()->json(['message' => __('messages.path.updated')]);
     }
 
     /**
@@ -55,6 +55,8 @@ class PathController extends Controller
      */
     public function destroy(Path $path): JsonResponse
     {
-        return response()->json($path, Response::HTTP_OK);
+        $path->delete();
+
+        return response()->json(['message'=> __('messages.path.deleted')]);
     }
 }

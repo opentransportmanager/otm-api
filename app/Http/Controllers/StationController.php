@@ -29,7 +29,7 @@ class StationController extends Controller
     {
         Station::create($request->validated());
 
-        return response()->json(['message' => 'Station created succesfully'], Response::HTTP_CREATED);
+        return response()->json(['message' => __('messages.station.created')], Response::HTTP_CREATED);
     }
 
     /**
@@ -37,7 +37,7 @@ class StationController extends Controller
      */
     public function show(Station $station): JsonResponse
     {
-        return response()->json($station, Response::HTTP_OK);
+        return response()->json($station);
     }
 
     /**
@@ -47,7 +47,7 @@ class StationController extends Controller
     {
         $station->update($request->validated());
 
-        return response()->json(['message' => 'Station updated succesfully'], Response::HTTP_OK);
+        return response()->json(['message' => __('messages.station.created')]);
     }
 
     /**
@@ -57,6 +57,6 @@ class StationController extends Controller
     {
         $station->delete();
 
-        return response()->json(['message' => 'Station deleted successfully'], Response::HTTP_OK);
+        return response()->json(['message' => __('messages.station.deleted')]);
     }
 }
