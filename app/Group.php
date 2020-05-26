@@ -19,6 +19,10 @@ use Illuminate\Support\Carbon as Carbon;
  */
 class Group extends Model
 {
+    protected $fillable = [
+        'name',
+    ];
+
     /**
      * Returns an instance of (one-to-many) relation with Busline class.
      */
