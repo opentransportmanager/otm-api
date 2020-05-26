@@ -11,6 +11,7 @@ class RegistrationService
 {
     public function registerUser(array $input): array
     {
-
+        //work in progress
+        User::create($input->validated());
     }
 }

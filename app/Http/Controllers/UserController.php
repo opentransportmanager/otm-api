@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUser;
 use App\Http\Requests\UpdateUser;
+use App\Services\RegistrationService;
 use App\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
@@ -25,9 +26,13 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreUser $request, RegisterService $service): JsonResponse
+    public function store(StoreUser $request, RegistrationService $service): JsonResponse
     {
-        User::create($request->validated());
+        $response = $service->registerUser($request->validated());
+
+        if (!$response) {
+            return response()->json(['These credentials do not match our records.'], Response::HTTP_FORBIDDEN);
+        }
 
         return response()->json(['message' => 'User created successfully'], Response::HTTP_CREATED);
     }

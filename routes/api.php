@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/users', 'UserController@users');
+    Route::resource('users', 'UserController');
 });
 
 Route::get('/', function () {
