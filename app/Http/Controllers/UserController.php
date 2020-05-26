@@ -8,7 +8,6 @@ use App\Http\Requests\StoreUser;
 use App\Http\Requests\UpdateUser;
 use App\User;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class UserController extends Controller
