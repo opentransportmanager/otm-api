@@ -17,7 +17,7 @@ class CreatePathStationTable extends Migration
             $table->id();
             $table->foreignId('path_id')->constrained();
             $table->foreignId('station_id')->constrained();
-            $table->time('travel_time')->nullable();
+            $table->integer('travel_time')->default(0);
             $table->timestamps();
         });
     }

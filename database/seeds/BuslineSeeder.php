@@ -12,7 +12,7 @@ class BuslineSeeder extends Seeder
      */
     public function run(): void
     {
-        factory(Busline::class, 50)->create()->each(function ($busline): void {
+        factory(Busline::class, 50)->create()->each(function (Busline $busline): void {
             $busline->save(factory(Busline::class)->make()->toArray());
         });
     }
