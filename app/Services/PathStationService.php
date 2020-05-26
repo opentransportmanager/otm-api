@@ -36,11 +36,9 @@ class PathStationService
     {
         $stations = $path->stations;
 
-        $stations->map(function (Station $station): Station {
-            $station['travel_time'] = $station->pivot->travel_time;
-
-            return $station;
-        });
+        foreach ($stations as $station) {
+            $station->setAttribute('travel_time', $station->pivot->travel_time);
+        }
 
         return $stations->toArray();
     }
