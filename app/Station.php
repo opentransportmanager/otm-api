@@ -18,6 +18,7 @@ use Illuminate\Support\Carbon as Carbon;
  * @property Carbon|null       $created_at
  * @property Carbon|null       $updated_at
  * @property Collection|Path[] $paths
+ * @property Point             $position
  */
 class Station extends Model
 {
@@ -32,12 +33,29 @@ class Station extends Model
         'position',
     ];
 
+    protected $hidden = [
+        'pivot',
+        'created_at',
+        'updated_at',
+    ];
+
     /**
      * Transforms input location data to Point object.
      */
-    public function setPositionAttribute($value): void
+    public function setPositionAttribute(array $value): void
     {
         $this->attributes['position'] = new Point($value['lat'], $value['lng']);
+    }
+
+    /**
+     * Transforms the retrieved position data.
+     */
+    public function getPositionAttribute(Point $value): array
+    {
+        return [
+            'lat' => $value->getLat(),
+            'lng' => $value->getLng(),
+        ];
     }
 
     /**
