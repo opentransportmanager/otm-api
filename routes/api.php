@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->group(function() {
+Route::middleware('auth:sanctum')->group(function () {
     Route::get('/users', 'UserController@users');
 });
 
@@ -29,6 +28,12 @@ Route::fallback(function () {
 });
 
 Route::post('/login', 'AuthenticationController@login');
-Route::resource('stations', 'StationController')->except(['edit', 'create']);
-Route::resource('buslines', 'BuslineController')->except(['edit', 'create']);
-Route::resource('groups', 'GroupController')->except(['edit', 'create']);
+
+Route::post('/paths/{path}/stations', 'PathStationController@attachStations');
+Route::delete('/paths/{path}/stations', 'PathStationController@detachStations');
+Route::get('/paths/{path}/stations', 'PathStationController@showAttachedStations');
+Route::apiResource('stations', 'StationController');
+Route::apiResource('buslines', 'BuslineController');
+Route::apiResource('groups', 'GroupController');
+Route::apiResource('paths', 'PathController');
+
