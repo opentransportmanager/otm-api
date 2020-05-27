@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Requests;
 
-class UpdateStation extends BaseRequest
+class AttachStationsToPath extends BaseRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -12,8 +12,8 @@ class UpdateStation extends BaseRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|min:3|max:50',
-            'position' => 'required',
+            '*.id' => 'required|exists:stations,id|distinct',
+            '*.travel_time' => 'integer|min:0|max:60',
         ];
     }
 }

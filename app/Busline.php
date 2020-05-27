@@ -19,6 +19,10 @@ use Illuminate\Support\Carbon as Carbon;
  */
 class Busline extends Model
 {
+    protected $fillable = [
+        'number',
+    ];
+
     /**
      * Returns an instance of (one-to-many) relation with Busline class.
      */
