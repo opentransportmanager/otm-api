@@ -9,9 +9,14 @@ use Illuminate\Support\Facades\Hash;
 
 class RegistrationService
 {
-    public function registerUser(array $input): array
+    public function registerUser(array $input): object
     {
-        //work in progress
-        User::create($input->validated());
+        $validatedData = $input->validated();
+
+        return User::create([
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'password' => Hash::make($validatedData['password'])
+        ]);
     }
 }
