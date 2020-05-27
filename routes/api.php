@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::resource('users', 'UserController');
+
 });
 
 Route::get('/', function () {
@@ -26,7 +26,7 @@ Route::get('/', function () {
 Route::fallback(function () {
     return redirect()->to('https://opentransportmanager.github.io/otm-docs/');
 });
-
+Route::post('/register', 'UserController@store');
 Route::post('/login', 'AuthenticationController@login');
 Route::resource('stations', 'StationController')->except(['edit', 'create']);
 Route::resource('buslines', 'BuslineController')->except(['edit', 'create']);
