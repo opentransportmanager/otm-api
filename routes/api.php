@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware('auth:sanctum')->group(function (): void {
     Route::get('/users', 'UserController@users');
 });
 
@@ -36,4 +36,3 @@ Route::apiResource('stations', 'StationController');
 Route::apiResource('buslines', 'BuslineController');
 Route::apiResource('groups', 'GroupController');
 Route::apiResource('paths', 'PathController');
-
