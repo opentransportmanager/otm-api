@@ -15,8 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->group(function () {
+Route::post('/login', 'AuthenticationController@login');
+Route::post('/register', 'UserController@store');
 
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/user', 'UserController@show');
+    Route::get('/users', 'UserController@index');
 });
 
 Route::get('/', function () {
@@ -26,8 +30,7 @@ Route::get('/', function () {
 Route::fallback(function () {
     return redirect()->to('https://opentransportmanager.github.io/otm-docs/');
 });
-Route::post('/register', 'UserController@store');
-Route::post('/login', 'AuthenticationController@login');
+
 Route::resource('stations', 'StationController')->except(['edit', 'create']);
 Route::resource('buslines', 'BuslineController')->except(['edit', 'create']);
 Route::resource('groups', 'GroupController')->except(['edit', 'create']);
