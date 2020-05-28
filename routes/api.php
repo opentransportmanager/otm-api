@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,11 +23,11 @@ Route::middleware('auth:sanctum')->group(function (): void {
     Route::apiResource('/users', 'UserController@index');
 });
 
-Route::get('/', function () {
+Route::get('/', function (): void {
     echo 'OpenTransportManager API';
 });
 
-Route::fallback(function () {
+Route::fallback(function (): RedirectResponse {
     return redirect()->to('https://opentransportmanager.github.io/otm-docs/');
 });
 
