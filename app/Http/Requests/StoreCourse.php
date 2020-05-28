@@ -14,7 +14,7 @@ class StoreCourse extends BaseRequest
         return [
             'path_id' => 'required|integer|exists:paths,id',
             'group_id' => 'required|integer|exists:groups,id',
-            'start_time' => 'required|date_format:H:i',
+            'start_time' => 'required|date_format:'.config('formats.hours_minutes'),
         ];
     }
 }

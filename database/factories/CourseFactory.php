@@ -12,7 +12,7 @@ $factory->define(Course::class, function (Faker $faker): array {
     return [
         'path_id' => Path::query()->inRandomOrder()->first()->id,
         'group_id' => Group::query()->inRandomOrder()->first()->id,
-        'start_time' => $faker->time('H:i'),
+        'start_time' => $faker->time(config('formats.hours_minutes')),
         'created_at' => $faker->dateTime,
         'updated_at' => $faker->dateTime,
     ];

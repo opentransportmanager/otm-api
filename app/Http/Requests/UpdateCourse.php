@@ -14,7 +14,7 @@ class UpdateCourse extends BaseRequest
         return [
             'path_id' => 'integer|exists:paths,id',
             'group_id' => 'integer|exists:groups,id',
-            'start_time' => 'date_format:H:i',
+            'start_time' => 'date_format:'.config('formats.hours_minutes'),
         ];
     }
 }
