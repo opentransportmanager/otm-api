@@ -4,15 +4,17 @@ declare(strict_types=1);
 
 namespace App\Http\Requests;
 
-class StorePath extends BaseRequest
+class StorePath extends UpdatePath
 {
     /**
      * Get the validation rules that apply to the request.
      */
     public function rules(): array
     {
+        $rules = parent::rules();
+
         return [
-            'busline_id' => 'required|exists:buslines,id',
+            'busline_id' => $rules['busline_id'],
         ];
     }
 }

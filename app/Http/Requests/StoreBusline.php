@@ -11,8 +11,10 @@ class StoreBusline extends BaseRequest
      */
     public function rules(): array
     {
+        $rules = parent::rules();
+
         return [
-            'name' => 'required|string|alpha_num|min:1|max:5',
+            'name' => $rules['name'],
         ];
     }
 }
