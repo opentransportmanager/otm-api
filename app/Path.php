@@ -23,6 +23,10 @@ use Illuminate\Support\Carbon as Carbon;
  */
 class Path extends Model
 {
+    protected $fillable = [
+        'busline_id',
+    ];
+
     /**
      * Returns an instance of (many-to-many) relation with Station model.
      */

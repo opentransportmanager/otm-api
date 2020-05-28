@@ -19,7 +19,7 @@ class BuslineController extends Controller
     {
         $buslines = Busline::all();
 
-        return response()->json([$buslines], Response::HTTP_OK);
+        return response()->json([$buslines]);
     }
 
     /**
@@ -29,7 +29,7 @@ class BuslineController extends Controller
     {
         Busline::create($request->validated());
 
-        return response()->json(['message' => 'Busline created succesfully'], Response::HTTP_CREATED);
+        return response()->json(['message' => __('messages.busline.created')], Response::HTTP_CREATED);
     }
 
     /**
@@ -37,7 +37,7 @@ class BuslineController extends Controller
      */
     public function show(Busline $busline): JsonResponse
     {
-        return response()->json($busline, Response::HTTP_OK);
+        return response()->json($busline);
     }
 
     /**
@@ -47,7 +47,7 @@ class BuslineController extends Controller
     {
         $busline->update($request->validated());
 
-        return response()->json(['message' => 'Busline updated succesfully'], Response::HTTP_OK);
+        return response()->json(['message' => __('messages.busline.updated')]);
     }
 
     /**
@@ -57,6 +57,6 @@ class BuslineController extends Controller
     {
         $busline->delete();
 
-        return response()->json(['message' => 'Busline deleted successfully'], Response::HTTP_OK);
+        return response()->json(['message' => __('messages.busline.deleted')]);
     }
 }
