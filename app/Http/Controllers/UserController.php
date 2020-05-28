@@ -58,8 +58,8 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user): JsonResponse
+    public function destroy(): JsonResponse
     {
-        return response()->json([], Response::HTTP_OK);
+        return response()->json([], Response::HTTP_NOT_IMPLEMENTED);
     }
 }
