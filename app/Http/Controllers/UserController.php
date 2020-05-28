@@ -28,11 +28,7 @@ class UserController extends Controller
      */
     public function store(StoreUser $request, RegistrationService $service): JsonResponse
     {
-        $response = $service->registerUser($request->validated());
-
-        if (!$response) {
-            return response()->json(['These credentials do not match our records.'], Response::HTTP_FORBIDDEN);
-        }
+        $service->registerUser($request->validated());
 
         return response()->json(['message' => __('messages.user.created')]);
     }
