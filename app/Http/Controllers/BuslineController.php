@@ -19,7 +19,7 @@ class BuslineController extends Controller
     {
         $buslines = Busline::all();
 
-        return response()->json([$buslines]);
+        return response()->json($buslines);
     }
 
     /**

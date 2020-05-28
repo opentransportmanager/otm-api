@@ -18,7 +18,7 @@ use Illuminate\Support\Carbon as Carbon;
  * @property Carbon|null          $created_at
  * @property Carbon|null          $updated_at
  * @property Collection|Station[] $stations
- * @property Collection|Station[] $courses
+ * @property Collection|Course[]  $courses
  * @property Busline              $busline
  */
 class Path extends Model
