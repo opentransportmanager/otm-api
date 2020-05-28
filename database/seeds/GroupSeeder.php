@@ -13,7 +13,7 @@ class GroupSeeder extends Seeder
     public function run(): void
     {
         factory(Group::class, 20)->create()->each(function (Group $group): void {
-            $group->save(factory(Group::class)->make()->toArray());
+            $group->save();
         });
     }
 }

@@ -13,7 +13,7 @@ class CourseSeeder extends Seeder
     public function run(): void
     {
         factory(Course::class, 500)->create()->each(function (Course $course): void {
-            $course->save(factory(Course::class)->make()->toArray());
+            $course->save();
         });
     }
 }
