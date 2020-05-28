@@ -8,13 +8,11 @@ class UpdateUser extends BaseRequest
 {
     /**
      * Get the validation rules that apply to the request.
-     *
-     * @return array
      */
     public function rules(): array
     {
         return [
-            'name' => 'required|string|min:3|max:20'
+            'name' => 'required|string|min:3|max:20',
         ];
     }
 }
