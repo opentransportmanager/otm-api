@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 
 class RegistrationService
 {
-    public function registerUser(array $input): object
+    public function registerUser(array $input): User
     {
         return User::create([
             'name' => $input['name'],
