@@ -20,7 +20,7 @@ class UserController extends Controller
     {
         $users = User::all();
 
-        return response()->json($users, Response::HTTP_OK);
+        return response()->json($users);
     }
 
     /**
@@ -34,7 +34,7 @@ class UserController extends Controller
             return response()->json(['These credentials do not match our records.'], Response::HTTP_FORBIDDEN);
         }
 
-        return response()->json(['message' => 'User created successfully'], Response::HTTP_CREATED);
+        return response()->json(['message' => __('messages.user.created')]);
     }
 
     /**
@@ -42,7 +42,7 @@ class UserController extends Controller
      */
     public function show(User $user): JsonResponse
     {
-        return response()->json($user, Response::HTTP_OK);
+        return response()->json([$user]);
     }
 
     /**
@@ -52,7 +52,7 @@ class UserController extends Controller
     {
         $user->update($request->validated());
 
-        return response()->json(['message' => 'User updated succesfully'], Response::HTTP_OK);
+        return response()->json(['message' => __('messages.user.updated')]);
     }
 
     /**
@@ -60,6 +60,6 @@ class UserController extends Controller
      */
     public function destroy(): JsonResponse
     {
-        return response()->json([], Response::HTTP_NOT_IMPLEMENTED);
+        return response()->json(['message' => __('messages.user.deleted')]);
     }
 }
