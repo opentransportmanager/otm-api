@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-use App\Group;
+use App\Course;
 use Illuminate\Database\Seeder;
 
-class GroupSeeder extends Seeder
+class CourseSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        factory(Group::class, 20)->create()->each(function (Group $group): void {
-            $group->save();
+        factory(Course::class, 500)->create()->each(function (Course $course): void {
+            $course->save();
         });
     }
 }
