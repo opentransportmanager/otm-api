@@ -13,7 +13,7 @@ class PathSeeder extends Seeder
     public function run(): void
     {
         factory(Path::class, 100)->create()->each(function (Path $path): void {
-            $path->save(factory(Path::class)->make()->toArray());
+            $path->save();
         });
     }
 }

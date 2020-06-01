@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             StationSeeder::class,
             GroupSeeder::class,
             PathSeeder::class,
+            CourseSeeder::class,
             PathStationSeeder::class,
             ]);
         }

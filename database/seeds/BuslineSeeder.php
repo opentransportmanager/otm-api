@@ -12,8 +12,8 @@ class BuslineSeeder extends Seeder
      */
     public function run(): void
     {
-        factory(Busline::class, 50)->create()->each(function (Busline $busline): void {
-            $busline->save(factory(Busline::class)->make()->toArray());
+        factory(Busline::class, 50)->create()->each(function ($busline): void {
+            $busline->save();
         });
     }
 }
