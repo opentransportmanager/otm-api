@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Requests;
 
-class StoreBusline extends BaseRequest
+class StoreBusline extends UpdateBusline
 {
     /**
      * Get the validation rules that apply to the request.
