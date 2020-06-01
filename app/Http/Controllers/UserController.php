@@ -56,6 +56,6 @@ class UserController extends Controller
      */
     public function destroy(): JsonResponse
     {
-        return response()->json(['message' => __('messages.user.deleted')]);
+        return response()->json([], Response::HTTP_NOT_IMPLEMENTED);
     }
 }
