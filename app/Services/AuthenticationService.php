@@ -14,14 +14,14 @@ class AuthenticationService
         $user = User::where('email', $input['email'])->first();
 
         if (!$user || !Hash::check($input['password'], $user->password)) {
-            return array();
+            return [];
         }
 
         $token = $user->createToken('otm-token')->plainTextToken;
 
         return [
             'user' => $user,
-            'token' => $token
+            'token' => $token,
         ];
     }
 }

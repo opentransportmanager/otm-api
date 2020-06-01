@@ -4,17 +4,15 @@ declare(strict_types=1);
 
 namespace App\Http\Requests;
 
-class StoreBusline extends UpdateBusline
+class UpdateUser extends BaseRequest
 {
     /**
      * Get the validation rules that apply to the request.
      */
     public function rules(): array
     {
-        $rules = parent::rules();
-
         return [
-            'name' => $rules['name'],
+            'name' => 'required|string|min:3|max:20',
         ];
     }
 }
