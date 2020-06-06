@@ -5,16 +5,17 @@ declare(strict_types=1);
 namespace App\Exceptions;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 trait HandlerExceptions
 {
-    public function apiException($exception)
+    public function apiException($request, $exception): JsonResponse
     {
         if ($exception instanceof ModelNotFoundException) {
             return response()->json([
-                    'error' => 'Model not found',
+                    'error' => 'Object not found',
                 ], Response::HTTP_NOT_FOUND);
         }
 
@@ -23,5 +24,7 @@ trait HandlerExceptions
                     'error' => 'Incorect route',
                 ], Response::HTTP_NOT_FOUND);
         }
+
+        return parent::render($request, $exception);
     }
 }
