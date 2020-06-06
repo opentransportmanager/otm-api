@@ -15,13 +15,13 @@ trait HandlerExceptions
     {
         if ($exception instanceof ModelNotFoundException) {
             return response()->json([
-                    'error' => 'Object not found',
+                    'error' => 'Model not found',
                 ], Response::HTTP_NOT_FOUND);
         }
 
         if ($exception instanceof NotFoundHttpException) {
             return response()->json([
-                    'error' => 'Incorect route',
+                    'error' => 'Incorrect route',
                 ], Response::HTTP_NOT_FOUND);
         }
 
