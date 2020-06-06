@@ -10,17 +10,15 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 trait HandlerExceptions
 {
-    public function apiException($request, $exception)
+    public function apiException($exception)
     {
-        if ($exception instanceof ModelNotFoundException)
-        {
+        if ($exception instanceof ModelNotFoundException) {
             return response()->json([
                     'error' => 'Model not found',
                 ], Response::HTTP_NOT_FOUND);
         }
 
-        if ($exception instanceof NotFoundHttpException)
-        {
+        if ($exception instanceof NotFoundHttpException) {
             return response()->json([
                     'error' => 'Incorect route',
                 ], Response::HTTP_NOT_FOUND);
