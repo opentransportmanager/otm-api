@@ -6,14 +6,16 @@ namespace App\Exceptions;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Session\TokenMismatchException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Throwable;
 
 trait HandlerExceptions
 {
-    public function apiException($request, $exception): JsonResponse
+    public function apiException(Request $request, Throwable $exception): JsonResponse
     {
         if ($exception instanceof ModelNotFoundException) {
             return response()->json(['error' => 'Model not found'], Response::HTTP_NOT_FOUND);
