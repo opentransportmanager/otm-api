@@ -30,7 +30,7 @@ class RoleController extends Controller
     {
         Bouncer::role()->firstOrCreate($request->validated());
 
-        return response()->json([], Response::HTTP_CREATED);
+        return response()->json(['message' => __('messages.role.created')], Response::HTTP_CREATED);
     }
 
     /**

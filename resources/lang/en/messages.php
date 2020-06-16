@@ -31,4 +31,7 @@ return [
         'created' => 'User has been created successfully',
         'updated' => 'User has been updated successfully',
     ],
+    'role' => [
+        'created' => 'Role has been created successfully',
+    ],
 ];
