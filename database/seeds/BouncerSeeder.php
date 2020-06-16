@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use App\User;
 use Illuminate\Database\Seeder;
-use Silber\Bouncer\Bouncer;
+use Silber\Bouncer\BouncerFacade as Bouncer;
 
 class BouncerSeeder extends Seeder
 {
