@@ -16,7 +16,6 @@ class BouncerSeeder extends Seeder
         Bouncer::allow('admin')->everything();
         Bouncer::allow('dispatcher')->everything();
         Bouncer::forbid('dispatcher')->toManage(User::class);
-        Bouncer::forbid('dispatcher')->toManage(Bouncer::class);
         Bouncer::forbid('deactivated')->everything();
     }
 }
