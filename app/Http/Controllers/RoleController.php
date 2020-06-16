@@ -8,6 +8,7 @@ use App\Role;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Silber\Bouncer\BouncerFacade as Bouncer;
 
 class RoleController extends Controller
 {
@@ -16,7 +17,9 @@ class RoleController extends Controller
      */
     public function index(): JsonResponse
     {
-        return response()->json([], Response::HTTP_NOT_IMPLEMENTED);
+        $roles = Bouncer::role()->all();
+
+        return response()->json($roles);
     }
 
     /**
@@ -40,7 +43,7 @@ class RoleController extends Controller
      */
     public function show(Role $role): JsonResponse
     {
-        return response()->json([], Response::HTTP_NOT_IMPLEMENTED);
+        return response()->json($role);
     }
 
     /**

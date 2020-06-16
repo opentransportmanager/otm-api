@@ -41,3 +41,4 @@ Route::apiResource('/buslines', 'BuslineController');
 Route::apiResource('/groups', 'GroupController');
 Route::apiResource('/paths', 'PathController');
 Route::apiResource('/courses', 'CourseController');
+Route::apiResource('/roles', 'RoleController');
