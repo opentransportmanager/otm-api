@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Role;
+use App\Http\Requests\StoreRole;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -23,19 +24,13 @@ class RoleController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create(): JsonResponse
-    {
-        return response()->json([], Response::HTTP_NOT_IMPLEMENTED);
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): JsonResponse
+    public function store(StoreRole $request): JsonResponse
     {
-        return response()->json([], Response::HTTP_NOT_IMPLEMENTED);
+        Bouncer::role()->firstOrCreate($request->validated());
+
+        return response()->json([], Response::HTTP_CREATED);
     }
 
     /**
@@ -44,14 +39,6 @@ class RoleController extends Controller
     public function show(Role $role): JsonResponse
     {
         return response()->json($role);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Role $role): JsonResponse
-    {
-        return response()->json([], Response::HTTP_NOT_IMPLEMENTED);
     }
 
     /**
