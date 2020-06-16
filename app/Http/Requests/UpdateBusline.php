@@ -12,7 +12,7 @@ class UpdateBusline extends BaseRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|alpha_num|min:1|max:5',
+            'number' => 'required|string|alpha_num|min:1|max:5',
         ];
     }
 }
