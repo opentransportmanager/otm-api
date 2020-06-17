@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Role;
 use App\Http\Requests\StoreRole;
+use App\Role;
+use App\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -55,5 +56,25 @@ class RoleController extends Controller
     public function destroy(Role $role): JsonResponse
     {
         return response()->json([], Response::HTTP_NOT_IMPLEMENTED);
+    }
+
+    /**
+     * Assign role for specified user.
+     */
+    public function assign(User $user, Role $role): JsonResponse
+    {
+        Bouncer::assign($role)->to($user);
+
+        return response()->json(['message' => __('messages.role.assigned')], Response::HTTP_CREATED);
+    }
+
+    /**
+     * Retract role for specified user.
+     */
+    public function retract(User $user, Role $role): JsonResponse
+    {
+        Bouncer::retract($role)->from($user);
+
+        return response()->json(['message' => __('messages.role.retracted')], Response::HTTP_CREATED);
     }
 }

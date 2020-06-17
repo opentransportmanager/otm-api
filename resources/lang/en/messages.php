@@ -33,5 +33,7 @@ return [
     ],
     'role' => [
         'created' => 'Role has been created successfully',
+        'assigned' => 'Role has been assigned successfully',
+        'retracted' => 'Role has been retracted successfully',
     ],
 ];
