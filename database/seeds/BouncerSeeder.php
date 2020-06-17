@@ -14,8 +14,13 @@ class BouncerSeeder extends Seeder
     public function run(): void
     {
         Bouncer::allow('admin')->everything();
-        Bouncer::allow('dispatcher')->everything();
-        Bouncer::forbid('dispatcher')->toManage(User::class);
+        Bouncer::allow('editor')->everything();
+        Bouncer::forbid('editor')->toManage(User::class);
+        Bouncer::forbid('editor')->toManage(Role::class);
+        Bouncer::allow('user')->toOwn(User::class);
+        Bouncer::allow('user')->to('view')->everything();
+        Bouncer::forbid('user')->to('view', Role::class);
+        Bouncer::forbid('user')->to('view', User::class);
         Bouncer::forbid('deactivated')->everything();
     }
 }
