@@ -31,7 +31,7 @@ class RequestContext implements Context
     }
 
     /** @BeforeFeature */
-    public static function setupFeature(BeforeFeatureScope $scope)
+    public static function setupFeature(BeforeFeatureScope $scope): void
     {
         Artisan::call('migrate:refresh');
     }
@@ -73,7 +73,7 @@ class RequestContext implements Context
     /**
      * @Then response should be of type :class
      */
-    public function responseShouldBeOfType(string $class)
+    public function responseShouldBeOfType(string $class): void
     {
         Assert::isInstanceOf($class, $this->response);
     }
@@ -97,7 +97,7 @@ class RequestContext implements Context
     /**
      * @Given required :class object is surely existing
      */
-    public function someWereCreatedIn(string $class)
+    public function objectExists(string $class): void
     {
         factory('App\\'.$class, 1)->create()->each(function ($busline): void {
             $busline->save();
