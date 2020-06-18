@@ -35,15 +35,6 @@ class RequestContext implements Context
     }
 
     /**
-     * @When request is sent with debug
-     */
-    public function isSentWithDebug(): void
-    {
-        $this->response = app()->handle($this->request);
-        dd($this->request);
-    }
-
-    /**
      * @When request is sent
      */
     public function isSent(): void
