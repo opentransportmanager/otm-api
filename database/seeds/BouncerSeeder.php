@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\User;
+use App\Role;
 use Illuminate\Database\Seeder;
 use Silber\Bouncer\BouncerFacade as Bouncer;
 

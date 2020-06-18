@@ -8,7 +8,6 @@ use App\Http\Requests\StoreRole;
 use App\Role;
 use App\User;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Silber\Bouncer\BouncerFacade as Bouncer;
 
@@ -43,27 +42,11 @@ class RoleController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Role $role): JsonResponse
-    {
-        return response()->json([], Response::HTTP_NOT_IMPLEMENTED);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Role $role): JsonResponse
-    {
-        return response()->json([], Response::HTTP_NOT_IMPLEMENTED);
-    }
-
-    /**
      * Assign role for specified user.
      */
-    public function assign(User $user, Role $role): JsonResponse
+    public function assignRole(User $user, StoreRole $role): JsonResponse
     {
-        Bouncer::assign($role)->to($user);
+        $user->assign($role['name']);
 
         return response()->json(['message' => __('messages.role.assigned')], Response::HTTP_CREATED);
     }
@@ -71,9 +54,9 @@ class RoleController extends Controller
     /**
      * Retract role for specified user.
      */
-    public function retract(User $user, Role $role): JsonResponse
+    public function retractRole(User $user, StoreRole $role): JsonResponse
     {
-        Bouncer::retract($role)->from($user);
+        $user->retract($role['name']);
 
         return response()->json(['message' => __('messages.role.retracted')], Response::HTTP_CREATED);
     }

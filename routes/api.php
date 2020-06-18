@@ -41,6 +41,6 @@ Route::apiResource('/buslines', 'BuslineController');
 Route::apiResource('/groups', 'GroupController');
 Route::apiResource('/paths', 'PathController');
 Route::apiResource('/courses', 'CourseController');
-Route::post('/roles/assign', 'RoleController@assign');
-Route::post('/roles/retract', 'RoleController@retract');
+Route::get('/roles/assign/{user}', 'RoleController@assignRole');
+Route::delete('/roles/retract/{user}', 'RoleController@retractRole');
 Route::apiResource('/roles', 'RoleController');

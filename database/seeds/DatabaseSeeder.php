@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             PathSeeder::class,
             CourseSeeder::class,
             PathStationSeeder::class,
+            BouncerSeeder::class,
             ]);
         }
     }
