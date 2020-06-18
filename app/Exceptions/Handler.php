@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Throwable;
 
@@ -30,7 +29,7 @@ class Handler extends ExceptionHandler
      *
      * @throws \Throwable
      */
-    public function render(Request $request, Throwable $exception): Response
+    public function render($request, Throwable $exception): Response
     {
         return response($this->apiException($request, $exception));
     }
