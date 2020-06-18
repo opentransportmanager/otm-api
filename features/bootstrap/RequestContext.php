@@ -16,19 +16,8 @@ class RequestContext implements Context
     use DisablingThrottling;
 
     private JsonResponse $response;
-    private $request;
-    private $nestedArray;
-
-    /**
-     * Initializes context.
-     *
-     * Every scenario gets its own context instance.
-     * You can also pass arbitrary arguments to the
-     * context constructor through behat.yml.
-     */
-    public function __construct()
-    {
-    }
+    private Request $request;
+    private array $nestedArray;
 
     /** @BeforeFeature */
     public static function setupFeature(BeforeFeatureScope $scope): void
