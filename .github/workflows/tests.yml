@@ -28,6 +28,7 @@ jobs:
       run: |
         cp .env.ci .env
         php artisan key:generate
+        cp .env .env.behat
     - name: Run migrations
       run: |
         php artisan migrate
