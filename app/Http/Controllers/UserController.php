@@ -18,6 +18,7 @@ class UserController extends Controller
      */
     public function index(): JsonResponse
     {
+        $this->authorize('view');
         $users = User::all();
 
         return response()->json($users);
@@ -38,6 +39,7 @@ class UserController extends Controller
      */
     public function show(User $user): JsonResponse
     {
+        $this->authorize('view');
         return response()->json([$user]);
     }
 
@@ -46,6 +48,7 @@ class UserController extends Controller
      */
     public function update(UpdateUser $request, User $user): JsonResponse
     {
+        $this->authorize('manage');
         $user->update($request->validated());
 
         return response()->json(['message' => __('messages.user.updated')]);

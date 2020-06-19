@@ -17,6 +17,7 @@ class CourseController extends Controller
      */
     public function index(): JsonResponse
     {
+        $this->authorize('view');
         $courses = Course::all();
 
         return response()->json($courses);
@@ -27,6 +28,7 @@ class CourseController extends Controller
      */
     public function store(StoreCourse $request): JsonResponse
     {
+        $this->authorize('manage');
         Course::create($request->validated());
 
         return response()->json(['message' => __('messages.course.created')], Response::HTTP_CREATED);
@@ -37,6 +39,7 @@ class CourseController extends Controller
      */
     public function show(Course $course): JsonResponse
     {
+        $this->authorize('view');
         return response()->json($course);
     }
 
@@ -45,6 +48,7 @@ class CourseController extends Controller
      */
     public function update(UpdateCourse $request, Course $course): JsonResponse
     {
+        $this->authorize('manage');
         $course->update($request->validated());
 
         return response()->json(['message' => __('messages.course.updated')]);
@@ -55,6 +59,7 @@ class CourseController extends Controller
      */
     public function destroy(Course $course): JsonResponse
     {
+        $this->authorize('manage');
         $course->delete();
 
         return response()->json(['message' => __('messages.course.deleted')]);

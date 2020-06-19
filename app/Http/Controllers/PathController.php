@@ -17,6 +17,7 @@ class PathController extends Controller
      */
     public function index(): JsonResponse
     {
+        $this->authorize('view');
         $paths = Path::all();
 
         return response()->json($paths);
@@ -27,6 +28,7 @@ class PathController extends Controller
      */
     public function store(StorePath $request): JsonResponse
     {
+        $this->authorize('manage');
         Path::create($request->validated());
 
         return response()->json(['message' => __('messages.path.created')], Response::HTTP_CREATED);
@@ -37,6 +39,7 @@ class PathController extends Controller
      */
     public function show(Path $path): JsonResponse
     {
+        $this->authorize('view');
         return response()->json($path);
     }
 
@@ -45,6 +48,7 @@ class PathController extends Controller
      */
     public function update(UpdatePath $request, Path $path): JsonResponse
     {
+        $this->authorize('manage');
         $path->update($request->validated());
 
         return response()->json(['message' => __('messages.path.updated')]);
@@ -55,6 +59,7 @@ class PathController extends Controller
      */
     public function destroy(Path $path): JsonResponse
     {
+        $this->authorize('manage');
         $path->delete();
 
         return response()->json(['message'=> __('messages.path.deleted')]);
