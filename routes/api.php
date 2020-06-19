@@ -31,8 +31,6 @@ Route::fallback(function (): RedirectResponse {
     return redirect()->to('https://opentransportmanager.github.io/otm-docs/');
 });
 
-Route::post('/login', 'AuthenticationController@login');
-
 Route::post('/paths/{path}/stations', 'PathStationController@attachStations');
 Route::delete('/paths/{path}/stations', 'PathStationController@detachStations');
 Route::get('/paths/{path}/stations', 'PathStationController@showAttachedStations');
