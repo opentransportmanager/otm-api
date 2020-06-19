@@ -11,10 +11,14 @@ class RegistrationService
 {
     public function registerUser(array $input): User
     {
-        return User::create([
+        $user = [
             'name' => $input['name'],
             'email' => $input['email'],
-            'password' => Hash::make($input['password']),
-        ]);
+            'password' => Hash::make($input['password'])
+        ];
+
+        $createdUser = User::create($user);
+        $createdUser->assign('user');
+        return ($createdUser);
     }
 }
