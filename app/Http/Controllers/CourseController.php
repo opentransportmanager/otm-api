@@ -17,7 +17,6 @@ class CourseController extends Controller
      */
     public function index(): JsonResponse
     {
-        $this->authorize('view');
         $courses = Course::all();
 
         return response()->json($courses);
@@ -39,7 +38,6 @@ class CourseController extends Controller
      */
     public function show(Course $course): JsonResponse
     {
-        $this->authorize('view');
         return response()->json($course);
     }
 

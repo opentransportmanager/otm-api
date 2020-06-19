@@ -45,7 +45,6 @@ class PathStationController extends Controller
      */
     public function showAttachedStations(Path $path): JsonResponse
     {
-        $this->authorize('view');
         $stations = $this->pathStationService->showAttachedStations($path);
 
         return response()->json($stations);

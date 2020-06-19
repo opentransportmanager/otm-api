@@ -17,7 +17,6 @@ class StationController extends Controller
      */
     public function index(): JsonResponse
     {
-        $this->authorize('view');
         $stations = Station::all();
 
         return response()->json($stations, Response::HTTP_OK);
@@ -39,7 +38,6 @@ class StationController extends Controller
      */
     public function show(Station $station): JsonResponse
     {
-        $this->authorize('view');
         return response()->json($station);
     }
 

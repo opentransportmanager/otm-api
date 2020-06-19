@@ -17,7 +17,6 @@ class BuslineController extends Controller
      */
     public function index(): JsonResponse
     {
-        $this->authorize('view');
         $buslines = Busline::all();
 
         return response()->json($buslines);
@@ -39,8 +38,6 @@ class BuslineController extends Controller
      */
     public function show(Busline $busline): JsonResponse
     {
-        $this->authorize('view');
-
         return response()->json($busline);
     }
 

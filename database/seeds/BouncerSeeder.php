@@ -19,9 +19,6 @@ class BouncerSeeder extends Seeder
         Bouncer::forbid('editor')->toManage(User::class);
         Bouncer::forbid('editor')->toManage(Role::class);
         Bouncer::allow('user')->toOwn(User::class);
-        Bouncer::allow('user')->to('view')->everything();
-        Bouncer::forbid('user')->to('view', Role::class);
-        Bouncer::forbid('user')->to('view', User::class);
         Bouncer::forbid('deactivated')->everything();
     }
 }

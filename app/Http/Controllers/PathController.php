@@ -17,7 +17,6 @@ class PathController extends Controller
      */
     public function index(): JsonResponse
     {
-        $this->authorize('view');
         $paths = Path::all();
 
         return response()->json($paths);
@@ -39,7 +38,6 @@ class PathController extends Controller
      */
     public function show(Path $path): JsonResponse
     {
-        $this->authorize('view');
         return response()->json($path);
     }
 

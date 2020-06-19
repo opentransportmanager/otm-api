@@ -17,7 +17,6 @@ class GroupController extends Controller
      */
     public function index(): JsonResponse
     {
-        $this->authorize('view');
         $groups = Group::all();
 
         return response()->json($groups);
@@ -39,7 +38,6 @@ class GroupController extends Controller
      */
     public function show(Group $group): JsonResponse
     {
-        $this->authorize('view');
         return response()->json($group);
     }
 

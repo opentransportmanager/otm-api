@@ -21,6 +21,9 @@ Route::post('/register', 'UserController@store');
 
 Route::middleware('auth:sanctum')->group(function (): void {
     Route::apiResource('/users', 'UserController');
+    Route::get('/roles/assign/{user}', 'RoleController@assignRole');
+    Route::delete('/roles/retract/{user}', 'RoleController@retractRole');
+    Route::apiResource('/roles', 'RoleController');
 });
 
 Route::get('/', function (): void {
@@ -39,6 +42,3 @@ Route::apiResource('/buslines', 'BuslineController');
 Route::apiResource('/groups', 'GroupController');
 Route::apiResource('/paths', 'PathController');
 Route::apiResource('/courses', 'CourseController');
-Route::get('/roles/assign/{user}', 'RoleController@assignRole');
-Route::delete('/roles/retract/{user}', 'RoleController@retractRole');
-Route::apiResource('/roles', 'RoleController');
