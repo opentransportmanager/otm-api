@@ -1,0 +1,8 @@
+default:
+  extensions:
+    KrzysztofRewak\Larahat\BehatExtension:
+      env: ".env.behat"
+  suites:
+    default:
+      contexts:
+        - RequestContext
