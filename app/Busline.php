@@ -23,6 +23,11 @@ class Busline extends Model
         'number',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     /**
      * Returns an instance of (one-to-many) relation with Busline class.
      */

@@ -27,6 +27,13 @@ class Path extends Model
         'busline_id',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'pivot',
+        'busline',
+    ];
+
     /**
      * Returns an instance of (many-to-many) relation with Station model.
      */
