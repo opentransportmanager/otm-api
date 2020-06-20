@@ -26,6 +26,7 @@ return [
     'path_station' => [
         'attached' => 'Stations attached successfully',
         'detached' => 'Stations detached successfully',
+        'updated' => 'Station travel_time on selected Path updated',
     ],
     'user' => [
         'created' => 'User has been created successfully',
