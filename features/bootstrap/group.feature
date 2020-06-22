@@ -22,6 +22,7 @@ Scenario Outline: Showing selected Group data
     And the table "groups" contains "<id>"
     When request is sent
     Then response should be of type "\Illuminate\Http\JsonResponse"
+    And response original content should be of type "\App\Group"
     And response code should be equal to 200
     Examples:
         | id |
@@ -36,7 +37,7 @@ Scenario Outline: Updating selected Group data
     And my request data contains "name" equal "<name>"
     When request is sent
     Then response should be of type "\Illuminate\Http\JsonResponse"
-    And table "groups" with <id> with field "name" should contain "<name>"
+    And model "Group" with <id> with field "name" should be equal to "<name>"
     And response code should be equal to 200
     Examples:
     | id |     name    |

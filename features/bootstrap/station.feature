@@ -41,9 +41,7 @@ Scenario Outline: Updating selected Station data
     And my request data contains "position" with nested "lng" equal "<lng>"
     When request is sent
     Then response should be of type "\Illuminate\Http\JsonResponse"
-    And table "stations" with <id> with field "name" should contain "<name>"
-    And table "stations" with <id> with field "lat" should contain "<lat>"
-    And table "stations" with <id> with field "lng" should contain "<lng>"
+    And model "Station" with <id> with field "name" should be equal to "<name>"
     And response code should be equal to 200
 Examples:
         | id | name     | lat   | lng  |
