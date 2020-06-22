@@ -51,7 +51,7 @@ class RoleController extends Controller
     public function assignRole(User $user, StoreRole $role): JsonResponse
     {
         $this->authorize('manage');
-        $user->assign($role['name']);
+        $user->assign($role->get('name'));
 
         return response()->json(['message' => __('messages.role.assigned')], Response::HTTP_CREATED);
     }
@@ -62,7 +62,7 @@ class RoleController extends Controller
     public function retractRole(User $user, StoreRole $role): JsonResponse
     {
         $this->authorize('manage');
-        $user->retract($role['name']);
+        $user->retract($role->get('name'));
 
         return response()->json(['message' => __('messages.role.retracted')], Response::HTTP_CREATED);
     }
