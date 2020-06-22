@@ -43,10 +43,10 @@ Route::middleware('auth:sanctum')->group(function (): void {
     Route::group(['middleware' => 'can:manage'], function () {
         Route::post('/paths/{path}/stations', 'PathStationController@attachStations');
         Route::delete('/paths/{path}/stations', 'PathStationController@detachStations');
-        Route::apiResource('/stations', 'StationController')->only(['store', 'update', 'delete']);
-        Route::apiResource('/buslines', 'BuslineController')->only(['store', 'update', 'delete']);
-        Route::apiResource('/groups', 'GroupController')->only(['store', 'update', 'delete']);
-        Route::apiResource('/paths', 'PathController')->only(['store', 'update', 'delete']);
-        Route::apiResource('/courses', 'CourseController')->only(['store', 'update', 'delete']);
+        Route::apiResource('/stations', 'StationController')->only(['store', 'update', 'destroy']);
+        Route::apiResource('/buslines', 'BuslineController')->only(['store', 'update', 'destroy']);
+        Route::apiResource('/groups', 'GroupController')->only(['store', 'update', 'destroy']);
+        Route::apiResource('/paths', 'PathController')->only(['store', 'update', 'destroy']);
+        Route::apiResource('/courses', 'CourseController')->only(['store', 'update', 'destroy']);
     });
 });
