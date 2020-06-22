@@ -38,6 +38,14 @@ class Course extends Model
     ];
 
     /**
+     * Returns a 'start_time' attribute formatted to Hours:Minutes format
+     */
+    public function getStartTimeAttribute($value): string
+    {
+        return Carbon::parse($value)->format(config('formats.hours_minutes'));
+    }
+
+    /**
      * Returns an instance of (inverse one-to-many) relation with Group class.
      */
     public function group(): BelongsTo
