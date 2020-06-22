@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Throwable;
 
@@ -26,16 +25,14 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @return \Symfony\Component\HttpFoundation\Response
-     *
      * @throws \Throwable
      */
-    public function render($request, Throwable $exception): JsonResponse
+    public function render($request, Throwable $exception): Response
     {
         try {
-            $error = $this->apiException($request, $exception);
+            $error = $this->apiException($exception);
 
-            return response()->json($error, $error->getStatusCode());
+            return response($error, $error->getStatusCode());
         } catch (Throwable $e) {
             return parent::render($request, $exception);
         }

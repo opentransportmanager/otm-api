@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace App\Exceptions;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Session\TokenMismatchException;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
@@ -16,7 +14,7 @@ use Throwable;
 
 trait HandlerExceptions
 {
-    public function apiException(Request $request, Throwable $exception): Response
+    public function apiException(Throwable $exception): Response
     {
         if ($exception instanceof ModelNotFoundException) {
             return response(['message' => 'Model not found'], Response::HTTP_NOT_FOUND);
