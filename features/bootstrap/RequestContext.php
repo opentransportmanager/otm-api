@@ -18,11 +18,27 @@ class RequestContext implements Context
     private JsonResponse $response;
     private Request $request;
     private array $nestedArray;
+    private string $token = '';
 
     /** @BeforeFeature */
     public static function setupFeature(BeforeFeatureScope $scope): void
     {
-        Artisan::call('migrate:refresh');
+        Artisan::call('migrate:fresh');
+        $bouncerSeeder = new BouncerSeeder();
+        $bouncerSeeder->run();
+        $userTableSeeder = new UsersTableSeeder();
+        $userTableSeeder->run();
+    }
+
+    /**
+     * Attempts to login as Admin user and saves token from response.
+     */
+    private function authorizeAdmin()
+    {
+        $authRequest = Request::create('/login', 'POST');
+        $authRequest['email'] = 'admin@example.com';
+        $authRequest['password'] = 'admin';
+        $this->token = json_decode(app()->handle($authRequest)->getContent())->token;
     }
 
     /**
@@ -30,8 +46,12 @@ class RequestContext implements Context
      */
     public function IsBeingSentTo(string $method, string $endpoint): void
     {
+        if (!$this->token) {
+            $this->authorizeAdmin();
+        }
         $this->request = Request::create($endpoint, $method);
         $this->request->headers->set('accept', 'application/json');
+        $this->request->headers->set('Authorization', 'Bearer '.$this->token);
     }
 
     /**
@@ -67,12 +87,13 @@ class RequestContext implements Context
     }
 
     /**
-     * @Then table :table with :id with field :field should contain :data
+     * @Then model :model with :id with field :field should be equal to :data
      */
-    public function modelIdContains(string $table, int $id, string $field, string $data): void
+    public function modelIdContains(string $model, int $id, string $field, string $data): void
     {
-        $model = DB::table($table)->where('id', $id)->first();
-        Assert::assertEquals($data, $model->$field);
+        $model = config('app.namespace').$model;
+        $instance = $model::where('id', $id)->first();
+        Assert::assertEquals($data, $instance->$field);
     }
 
     /**
@@ -88,7 +109,7 @@ class RequestContext implements Context
      */
     public function objectExists(string $class): void
     {
-        factory('App\\'.$class, 1)->create()->each(function ($busline): void {
+        factory(config('app.namespace').$class, 1)->create()->each(function ($busline): void {
             $busline->save();
         });
     }
