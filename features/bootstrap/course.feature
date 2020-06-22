@@ -8,6 +8,9 @@ Scenario Outline: Creating Course entity
     And my request data contains "path_id" equal "<path_id>"
     And my request data contains "group_id" equal "<group_id>"
     And my request data contains "start_time" equal "<start_time>"
+    And required "Busline" object is surely existing
+    And required "Path" object is surely existing
+    And required "Group" object is surely existing
     When request is sent
     Then response should be of type "\Illuminate\Http\JsonResponse"
     And response code should be equal to 201
@@ -21,7 +24,8 @@ Scenario Outline: Creating Course entity
 
 Scenario Outline: Showing selected Course data
     Given "GET" is being sent to "/courses/<id>"
-    And the table "Courses" contains <id>
+    And the table "courses" contains <id>
+    When request is sent
     Then response should be of type "\Illuminate\Http\JsonResponse"
     And response original content should be of type "\App\Course"
     And response code should be equal to 200
@@ -38,6 +42,7 @@ Scenario Outline: Updating selected Course data
     And my request data contains "start_time" equal "<start_time>"
     When request is sent
     Then response should be of type "\Illuminate\Http\JsonResponse"
+    And table "courses" with <id> with field "start_time" contains "<start_time>"
     And response code should be equal to 200
     Examples:
     | id | start_time|
