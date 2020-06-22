@@ -42,7 +42,7 @@ Scenario Outline: Updating selected Course data
     And my request data contains "start_time" equal "<start_time>"
     When request is sent
     Then response should be of type "\Illuminate\Http\JsonResponse"
-    And table "courses" with <id> with field "start_time" contains "<start_time>"
+    And table "courses" with <id> with field "start_time" should contain "<start_time>"
     And response code should be equal to 200
     Examples:
     | id | start_time|

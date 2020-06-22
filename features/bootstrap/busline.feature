@@ -37,6 +37,7 @@ Scenario Outline: Updating selected Busline data
     And my request data contains "number" equal "<number>"
     When request is sent
     Then response should be of type "\Illuminate\Http\JsonResponse"
+    And table "buslines" with <id> with field "number" should contain "<number>"
     And response code should be equal to 200
     Examples:
     | id | number|

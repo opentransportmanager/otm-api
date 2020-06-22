@@ -36,6 +36,7 @@ Scenario Outline: Updating selected Group data
     And my request data contains "name" equal "<name>"
     When request is sent
     Then response should be of type "\Illuminate\Http\JsonResponse"
+    And table "groups" with <id> with field "name" should contain "<name>"
     And response code should be equal to 200
     Examples:
     | id |     name    |

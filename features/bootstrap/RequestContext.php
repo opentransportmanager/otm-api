@@ -67,6 +67,15 @@ class RequestContext implements Context
     }
 
     /**
+     * @Then table :table with :id with field :field should contain :data
+     */
+    public function modelIdContains(string $table, int $id, string $field, string $data): void
+    {
+        $model = DB::table($table)->where('id', $id)->first();
+        Assert::assertEquals($data, $model->$field);
+    }
+
+    /**
      * @Given the table :table contains :id
      */
     public function theTableContains(string $table, int $id): void

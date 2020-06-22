@@ -39,6 +39,7 @@ Scenario Outline: Updating selected Path data
     And required "Busline" object is surely existing
     When request is sent
     Then response should be of type "\Illuminate\Http\JsonResponse"
+    And table "buslines" with <id> with field "busline_id" should contain "<busline_id>"
     And response code should be equal to 200
     Examples:
     | id | busline_id|
