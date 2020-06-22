@@ -30,13 +30,13 @@ Route::apiResource('/courses', 'CourseController')->only(['index', 'show']);
 Route::get('/paths/{path}/stations', 'PathStationController@showAttachedStations');
 
 Route::middleware('auth:sanctum')->group(function (): void {
-    Route::group(['middleware' => 'can:manage App\Role'], function () {
+    Route::group(['middleware' => 'can:manage, App\Role'], function () {
         Route::get('/roles/assign/{user}', 'RoleController@assignRole');
         Route::delete('/roles/retract/{user}', 'RoleController@retractRole');
         Route::apiResource('/roles', 'RoleController');
     });
 
-    Route::group(['middleware' => 'can:manage App\User'], function () {
+    Route::group(['middleware' => 'can:manage, App\User'], function () {
         Route::apiResource('/users', 'UserController');
     });
 
