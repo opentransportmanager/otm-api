@@ -27,7 +27,6 @@ class StationController extends Controller
      */
     public function store(StoreStation $request): JsonResponse
     {
-        $this->authorize('manage');
         Station::create($request->validated());
 
         return response()->json(['message' => __('messages.station.created')], Response::HTTP_CREATED);
@@ -46,7 +45,6 @@ class StationController extends Controller
      */
     public function update(UpdateStation $request, Station $station): JsonResponse
     {
-        $this->authorize('manage');
         $station->update($request->validated());
 
         return response()->json(['message' => __('messages.station.updated')]);
@@ -57,7 +55,6 @@ class StationController extends Controller
      */
     public function destroy(Station $station): JsonResponse
     {
-        $this->authorize('manage');
         $station->delete();
 
         return response()->json(['message' => __('messages.station.deleted')]);

@@ -23,7 +23,6 @@ class PathStationController extends Controller
      */
     public function attachStations(AttachStationsToPath $request, Path $path): JsonResponse
     {
-        $this->authorize('manage');
         $this->pathStationService->attachStations($request->validated(), $path);
 
         return response()->json(['message' => __('messages.path_station.attached')], Response::HTTP_CREATED);
@@ -34,7 +33,6 @@ class PathStationController extends Controller
      */
     public function detachStations(DetachStationsFromPath $request, Path $path): JsonResponse
     {
-        $this->authorize('manage');
         $this->pathStationService->detachStations($request->validated(), $path);
 
         return response()->json(['message' => __('messages.path_station.detached')]);

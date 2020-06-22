@@ -18,7 +18,6 @@ class RoleController extends Controller
      */
     public function index(): JsonResponse
     {
-        $this->authorize('view');
         $roles = Bouncer::role()->all();
 
         return response()->json($roles);
@@ -29,7 +28,6 @@ class RoleController extends Controller
      */
     public function store(StoreRole $request): JsonResponse
     {
-        $this->authorize('manage');
         Bouncer::role()->firstOrCreate($request->validated());
 
         return response()->json(['message' => __('messages.role.created')], Response::HTTP_CREATED);
@@ -40,8 +38,6 @@ class RoleController extends Controller
      */
     public function show(Role $role): JsonResponse
     {
-        $this->authorize('view');
-
         return response()->json($role);
     }
 
@@ -50,7 +46,6 @@ class RoleController extends Controller
      */
     public function assignRole(User $user, StoreRole $role): JsonResponse
     {
-        $this->authorize('manage');
         $user->assign($role->get('name'));
 
         return response()->json(['message' => __('messages.role.assigned')], Response::HTTP_CREATED);
@@ -61,7 +56,6 @@ class RoleController extends Controller
      */
     public function retractRole(User $user, StoreRole $role): JsonResponse
     {
-        $this->authorize('manage');
         $user->retract($role->get('name'));
 
         return response()->json(['message' => __('messages.role.retracted')], Response::HTTP_CREATED);

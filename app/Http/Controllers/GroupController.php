@@ -27,7 +27,6 @@ class GroupController extends Controller
      */
     public function store(StoreGroup $request): JsonResponse
     {
-        $this->authorize('manage');
         Group::create($request->validated());
 
         return response()->json(['message' => __('messages.group.created')], Response::HTTP_CREATED);
@@ -46,7 +45,6 @@ class GroupController extends Controller
      */
     public function update(UpdateGroup $request, Group $group): JsonResponse
     {
-        $this->authorize('manage');
         $group->update($request->validated());
 
         return response()->json(['message' => __('messages.group.updated')]);
@@ -57,7 +55,6 @@ class GroupController extends Controller
      */
     public function destroy(Group $group): JsonResponse
     {
-        $this->authorize('manage');
         $group->delete();
 
         return response()->json(['message' => __('messages.group.deleted')]);
