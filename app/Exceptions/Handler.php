@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Throwable;
 
@@ -29,8 +30,14 @@ class Handler extends ExceptionHandler
      *
      * @throws \Throwable
      */
-    public function render($request, Throwable $exception): Response
+    public function render($request, Throwable $exception): JsonResponse
     {
-        return response($this->apiException($request, $exception));
+        try {
+            $error = $this->apiException($request, $exception);
+
+            return response()->json($error, $error->getStatusCode());
+        } catch (Throwable $e) {
+            return parent::render($request, $exception);
+        }
     }
 }
