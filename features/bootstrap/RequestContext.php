@@ -109,8 +109,8 @@ class RequestContext implements Context
      */
     public function objectExists(string $class): void
     {
-        factory(config('app.namespace').$class, 1)->create()->each(function ($busline): void {
-            $busline->save();
+        factory(config('app.namespace').$class, 1)->create()->each(function ($object): void {
+            $object->save();
         });
     }
 
