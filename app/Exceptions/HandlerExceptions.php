@@ -9,6 +9,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Session\TokenMismatchException;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
@@ -31,6 +32,10 @@ trait HandlerExceptions
 
         if ($exception instanceof TokenMismatchException) {
             return response(['message' => 'Token mismatch'], Response::HTTP_FORBIDDEN);
+        }
+
+        if ($exception instanceof AccessDeniedException) {
+            return response(['message' => 'Access Denied'], Response::HTTP_FORBIDDEN);
         }
     }
 }
