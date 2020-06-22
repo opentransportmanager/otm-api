@@ -14,7 +14,7 @@ class StoreBusline extends UpdateBusline
         $rules = parent::rules();
 
         return [
-            'name' => $rules['name'],
+            'number' => $rules['number'],
         ];
     }
 }

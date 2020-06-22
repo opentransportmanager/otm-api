@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,9 +29,7 @@ Route::get('/', function (): void {
     echo 'OpenTransportManager API';
 });
 
-Route::fallback(function (): RedirectResponse {
-    return redirect()->to('https://opentransportmanager.github.io/otm-docs/');
-});
+Route::get('/docs', 'DocsController@docs');
 
 Route::post('/paths/{path}/stations', 'PathStationController@attachStations');
 Route::delete('/paths/{path}/stations', 'PathStationController@detachStations');
