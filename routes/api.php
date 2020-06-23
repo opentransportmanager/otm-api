@@ -20,7 +20,7 @@ Route::get('/', function (): void {
 });
 
 Route::get('/docs', 'DocsController@docs');
-Route::post('/login', 'AuthenticationController@login');
+Route::post('/login', 'AuthenticationController@login')->name('login');
 Route::post('/register', 'UserController@store');
 Route::apiResource('/stations', 'StationController')->only(['index', 'show']);
 Route::apiResource('/buslines', 'BuslineController')->only(['index', 'show']);
