@@ -30,7 +30,7 @@ class UserController extends Controller
     {
         $service->registerUser($request->validated());
 
-        return response()->json(['message' => __('messages.user.created')]);
+        return response()->json(['message' => __('messages.user.created')], Response::HTTP_CREATED);
     }
 
     /**
