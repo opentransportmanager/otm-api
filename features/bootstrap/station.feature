@@ -4,7 +4,8 @@ as an API client
 I need to be able to manage Station data via requests
 
 Scenario Outline: Creating Station entity
-    Given "POST" is being sent to "/stations"
+    Given client is authorized to do an action
+    And "POST" is being sent to "/stations"
     And my request data contains "name" equal "<name>"
     And my request data contains "position" with nested "lat" equal "<lat>"
     And my request data contains "position" with nested "lng" equal "<lng>"
@@ -20,7 +21,7 @@ Scenario Outline: Creating Station entity
       |  station5 |  65.09  |  40.56  |
 
 Scenario Outline: Showing selected Station data
-    Given "GET" is being sent to "/stations/<id>"
+    When "GET" is being sent to "/stations/<id>"
     And the table "stations" contains "<id>"
     When request is sent
     Then response should be of type "\Illuminate\Http\JsonResponse"
@@ -35,7 +36,8 @@ Scenario Outline: Showing selected Station data
         | 5  |
 
 Scenario Outline: Updating selected Station data
-    Given "PATCH" is being sent to "/stations/<id>"
+    Given client is authorized to do an action
+    And "PATCH" is being sent to "/stations/<id>"
     And my request data contains "name" equal "<name>"
     And my request data contains "position" with nested "lat" equal "<lat>"
     And my request data contains "position" with nested "lng" equal "<lng>"
@@ -59,7 +61,8 @@ Scenario: Showing all Station data
     And response code should be equal to 200
 
 Scenario Outline: Deleting selected Station data
-    Given "DELETE" is being sent to "/stations/<id>"
+    Given client is authorized to do an action
+    And "DELETE" is being sent to "/stations/<id>"
     And the table "stations" contains <id>
     When request is sent
     Then response should be of type "\Illuminate\Http\JsonResponse"

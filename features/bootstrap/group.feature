@@ -4,7 +4,8 @@ as an API client
 I need to be able to manage Group data via requests
 
 Scenario Outline: Creating Group entity
-    Given "POST" is being sent to "/groups"
+    Given client is authorized to do an action
+    And "POST" is being sent to "/groups"
     And my request data contains "name" equal "<name>"
     When request is sent
     Then response should be of type "\Illuminate\Http\JsonResponse"
@@ -18,7 +19,8 @@ Scenario Outline: Creating Group entity
       |  special event |
 
 Scenario Outline: Showing selected Group data
-    Given "GET" is being sent to "/groups/<id>"
+    Given client is authorized to do an action
+    And "GET" is being sent to "/groups/<id>"
     And the table "groups" contains "<id>"
     When request is sent
     Then response should be of type "\Illuminate\Http\JsonResponse"
@@ -33,7 +35,8 @@ Scenario Outline: Showing selected Group data
         | 5  |
 
 Scenario Outline: Updating selected Group data
-    Given "PATCH" is being sent to "/groups/<id>"
+    Given client is authorized to do an action
+    And "PATCH" is being sent to "/groups/<id>"
     And my request data contains "name" equal "<name>"
     When request is sent
     Then response should be of type "\Illuminate\Http\JsonResponse"
@@ -55,7 +58,8 @@ Scenario: Showing all groups data
     And response code should be equal to 200
 
 Scenario Outline: Deleting selected Group data
-    Given "DELETE" is being sent to "/groups/<id>"
+    Given client is authorized to do an action
+    And "DELETE" is being sent to "/groups/<id>"
     And the table "groups" contains <id>
     When request is sent
     Then response should be of type "\Illuminate\Http\JsonResponse"

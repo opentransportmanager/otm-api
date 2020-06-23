@@ -33,7 +33,7 @@ class RequestContext implements Context
     /**
      * Attempts to login as Admin user and saves token from response.
      */
-    private function authorizeAdmin()
+    private function authorizeAsAdmin(): void
     {
         $authRequest = Request::create('/login', 'POST');
         $authRequest['email'] = 'admin@example.com';
@@ -42,13 +42,20 @@ class RequestContext implements Context
     }
 
     /**
-     * @Given :method is being sent to :endpoint
+     * @Given client is authorized to do an action
      */
-    public function IsBeingSentTo(string $method, string $endpoint): void
+    public function isAuthorized(): void
     {
         if (!$this->token) {
-            $this->authorizeAdmin();
+            $this->authorizeAsAdmin();
         }
+    }
+
+    /**
+     * @Given :method is being sent to :endpoint
+     */
+    public function isBeingSentTo(string $method, string $endpoint): void
+    {
         $this->request = Request::create($endpoint, $method);
         $this->request->headers->set('accept', 'application/json');
         $this->request->headers->set('Authorization', 'Bearer '.$this->token);
@@ -105,7 +112,7 @@ class RequestContext implements Context
     }
 
     /**
-     * @Given required :class object is surely existing
+     * @Given required :class object is already existing
      */
     public function objectExists(string $class): void
     {

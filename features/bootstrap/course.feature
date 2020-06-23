@@ -4,13 +4,14 @@ as an API client
 I need to be able to manage Course data via requests
 
 Scenario Outline: Creating Course entity
-    Given "POST" is being sent to "/courses"
+    Given client is authorized to do an action
+    And "POST" is being sent to "/courses"
     And my request data contains "path_id" equal "<path_id>"
     And my request data contains "group_id" equal "<group_id>"
     And my request data contains "start_time" equal "<start_time>"
-    And required "Busline" object is surely existing
-    And required "Path" object is surely existing
-    And required "Group" object is surely existing
+    And required "Busline" object is already existing
+    And required "Path" object is already existing
+    And required "Group" object is already existing
     When request is sent
     Then response should be of type "\Illuminate\Http\JsonResponse"
     And response code should be equal to 201
@@ -38,7 +39,8 @@ Scenario Outline: Showing selected Course data
         | 5  |
 
 Scenario Outline: Updating selected Course data
-    Given "PATCH" is being sent to "/courses/<id>"
+    Given client is authorized to do an action
+    And "PATCH" is being sent to "/courses/<id>"
     And my request data contains "start_time" equal "<start_time>"
     When request is sent
     Then response should be of type "\Illuminate\Http\JsonResponse"
@@ -60,7 +62,8 @@ Scenario: Showing all Course data
     And response code should be equal to 200
 
 Scenario Outline: Deleting selected Course data
-    Given "DELETE" is being sent to "/courses/<id>"
+    Given client is authorized to do an action
+    And "DELETE" is being sent to "/courses/<id>"
     And the table "courses" contains <id>
     When request is sent
     Then response should be of type "\Illuminate\Http\JsonResponse"

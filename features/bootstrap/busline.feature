@@ -4,7 +4,8 @@ as an API client
 I need to be able to manage Busline data via requests
 
 Scenario Outline: Creating Busline data
-    Given "POST" is being sent to "/buslines"
+    Given client is authorized to do an action
+    And "POST" is being sent to "/buslines"
     And my request data contains "number" equal "<number>"
     When request is sent
     Then response should be of type "\Illuminate\Http\JsonResponse"
@@ -33,7 +34,8 @@ Scenario Outline: Showing selected Busline data
         | 5  |
 
 Scenario Outline: Updating selected Busline data
-    Given "PATCH" is being sent to "/buslines/<id>"
+    Given client is authorized to do an action
+    And "PATCH" is being sent to "/buslines/<id>"
     And my request data contains "number" equal "<number>"
     When request is sent
     Then response should be of type "\Illuminate\Http\JsonResponse"
@@ -55,7 +57,8 @@ Scenario: Showing all Busline data
     And response code should be equal to 200
 
 Scenario Outline: Deleting selected Busline data
-    Given "DELETE" is being sent to "/buslines/<id>"
+    Given client is authorized to do an action
+    And "DELETE" is being sent to "/buslines/<id>"
     And the table "buslines" contains <id>
     When request is sent
     Then response should be of type "\Illuminate\Http\JsonResponse"
