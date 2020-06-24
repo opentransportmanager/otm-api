@@ -3,6 +3,7 @@ Feature: Managing Path data
     as an API client
     I need to be able to manage Path data via requests
 
+    @api @path @protected @success
     Scenario Outline: Creating Path entity
         Given client is authorized to do an action
         And "POST" is being sent to "/paths"
@@ -19,6 +20,7 @@ Feature: Managing Path data
             | 4          |
             | 5          |
 
+    @api @path @public @success
     Scenario Outline: Showing selected Path data
         Given "GET" is being sent to "/paths/<id>"
         And the table "paths" contains "<id>"
@@ -33,7 +35,7 @@ Feature: Managing Path data
             | 3  |
             | 4  |
             | 5  |
-
+    @api @path @protected @success
     Scenario Outline: Updating selected Path data
         Given client is authorized to do an action
         And "PATCH" is being sent to "/paths/<id>"
@@ -51,6 +53,7 @@ Feature: Managing Path data
             | 4  | 9          |
             | 5  | 10         |
 
+    @api @path @public @success
     Scenario: Showing all paths data
         Given "GET" is being sent to "/paths"
         When request is sent
@@ -58,6 +61,7 @@ Feature: Managing Path data
         And response original content should be of type "\Illuminate\Database\Eloquent\Collection"
         And response code should be equal to 200
 
+    @api @path @protected @success
     Scenario Outline: Deleting selected Path data
         Given client is authorized to do an action
         And "DELETE" is being sent to "/paths/<id>"

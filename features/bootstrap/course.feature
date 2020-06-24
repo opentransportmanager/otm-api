@@ -3,6 +3,7 @@ Feature: Managing Course data
     as an API client
     I need to be able to manage Course data via requests
 
+    @api @course @protected @success
     Scenario Outline: Creating Course entity
         Given client is authorized to do an action
         And "POST" is being sent to "/courses"
@@ -23,6 +24,7 @@ Feature: Managing Course data
             | 4       | 4        | 12:20      |
             | 5       | 5        | 18:47      |
 
+    @api @course @public @success
     Scenario Outline: Showing selected Course data
         Given "GET" is being sent to "/courses/<id>"
         And the table "courses" contains <id>
@@ -38,6 +40,7 @@ Feature: Managing Course data
             | 4  |
             | 5  |
 
+    @api @course @protected @success
     Scenario Outline: Updating selected Course data
         Given client is authorized to do an action
         And "PATCH" is being sent to "/courses/<id>"
@@ -54,6 +57,7 @@ Feature: Managing Course data
             | 4  | 12:25      |
             | 5  | 18:52      |
 
+    @api @course @public @success
     Scenario: Showing all Course data
         Given "GET" is being sent to "/courses"
         When request is sent
@@ -61,6 +65,7 @@ Feature: Managing Course data
         And response original content should be of type "\Illuminate\Database\Eloquent\Collection"
         And response code should be equal to 200
 
+    @api @course @protected @success
     Scenario Outline: Deleting selected Course data
         Given client is authorized to do an action
         And "DELETE" is being sent to "/courses/<id>"

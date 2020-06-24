@@ -3,6 +3,7 @@ Feature: Authenticating via API
     as an API client
     I need to be able to register and login into system
 
+    @api @auth @user @public @success
     Scenario: Registering new user
         Given "POST" is being sent to "/register"
         And my request data contains "name" equal "test"
@@ -12,6 +13,7 @@ Feature: Authenticating via API
         Then response should be of type "Illuminate\Http\JsonResponse"
         And response code should be equal to 201
 
+    @api @auth @user @public @success
     Scenario: Logging in
         Given "POST" is being sent to "/login"
         And my request data contains "email" equal "test@example.com"
@@ -19,6 +21,3 @@ Feature: Authenticating via API
         When request is sent
         Then response should be of type "Illuminate\Http\JsonResponse"
         And response code should be equal to 200
-
-
-

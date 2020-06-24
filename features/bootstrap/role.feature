@@ -3,6 +3,7 @@ Feature: Managing Role data
     as an API client
     I need to be able to manage Role data via request
 
+    @api @role @protected @success
     Scenario Outline: Creating Role data
         Given client is authorized to do an action
         And "POST" is being sent to "/roles"
@@ -18,6 +19,7 @@ Feature: Managing Role data
             | ddddd |
             | eeeee |
 
+    @api @role @public @success
     Scenario Outline: Showing selected Role data
         Given "GET" is being sent to "/roles/<id>"
         And the table "roles" contains <id>
@@ -33,6 +35,7 @@ Feature: Managing Role data
             | 4  |
             | 5  |
 
+    @api @role @public @success
     Scenario: Showing all Role data
         Given "GET" is being sent to "/roles"
         When request is sent
@@ -40,6 +43,7 @@ Feature: Managing Role data
         And response original content should be of type "\Illuminate\Database\Eloquent\Collection"
         And response code should be equal to 200
 
+    @api @role @protected @success
     Scenario Outline: Assign Role to User
         Given client is authorized to do an action
         Given "GET" is being sent to "/roles/assign/<id>"
@@ -54,6 +58,7 @@ Feature: Managing Role data
             | 3  | ccccc |
             | 4  | ddddd |
 
+    @api @role @protected @success
     Scenario Outline: Retract Role from User
         Given client is authorized to do an action
         Given "DELETE" is being sent to "/roles/retract/<id>"

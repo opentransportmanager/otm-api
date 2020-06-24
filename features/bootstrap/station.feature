@@ -3,6 +3,7 @@ Feature: Managing Station data
     as an API client
     I need to be able to manage Station data via requests
 
+    @api @station @protected @success
     Scenario Outline: Creating Station entity
         Given client is authorized to do an action
         And "POST" is being sent to "/stations"
@@ -20,6 +21,7 @@ Feature: Managing Station data
             | station4 | 20.78 | 70.34 |
             | station5 | 65.09 | 40.56 |
 
+    @api @station @public @success
     Scenario Outline: Showing selected Station data
         When "GET" is being sent to "/stations/<id>"
         And the table "stations" contains "<id>"
@@ -35,6 +37,7 @@ Feature: Managing Station data
             | 4  |
             | 5  |
 
+    @api @station @protected @success
     Scenario Outline: Updating selected Station data
         Given client is authorized to do an action
         And "PATCH" is being sent to "/stations/<id>"
@@ -53,6 +56,7 @@ Feature: Managing Station data
             | 4  | station44 | 62.43 | 40.54 |
             | 5  | station55 | 23.45 | 34.22 |
 
+    @api @station @public @success
     Scenario: Showing all Station data
         Given "GET" is being sent to "/stations"
         When request is sent
@@ -60,6 +64,7 @@ Feature: Managing Station data
         And response original content should be of type "\Illuminate\Database\Eloquent\Collection"
         And response code should be equal to 200
 
+    @api @station @protected @success
     Scenario Outline: Deleting selected Station data
         Given client is authorized to do an action
         And "DELETE" is being sent to "/stations/<id>"

@@ -3,6 +3,7 @@ Feature: Managing Busline data
     as an API client
     I need to be able to manage Busline data via requests
 
+    @api @busline @protected @success
     Scenario Outline: Creating Busline data
         Given client is authorized to do an action
         And "POST" is being sent to "/buslines"
@@ -18,6 +19,7 @@ Feature: Managing Busline data
             | 35a    |
             | 84f    |
 
+    @api @busline @public @success
     Scenario Outline: Showing selected Busline data
         Given "GET" is being sent to "/buslines/<id>"
         And the table "buslines" contains <id>
@@ -33,6 +35,7 @@ Feature: Managing Busline data
             | 4  |
             | 5  |
 
+    @api @busline @protected @success
     Scenario Outline: Updating selected Busline data
         Given client is authorized to do an action
         And "PATCH" is being sent to "/buslines/<id>"
@@ -49,6 +52,7 @@ Feature: Managing Busline data
             | 4  | 45a    |
             | 5  | 94f    |
 
+    @api @busline @public @success
     Scenario: Showing all Busline data
         Given "GET" is being sent to "/buslines"
         When request is sent
@@ -56,6 +60,7 @@ Feature: Managing Busline data
         And response original content should be of type "\Illuminate\Database\Eloquent\Collection"
         And response code should be equal to 200
 
+    @api @busline @protected @success
     Scenario Outline: Deleting selected Busline data
         Given client is authorized to do an action
         And "DELETE" is being sent to "/buslines/<id>"

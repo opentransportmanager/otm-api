@@ -3,6 +3,7 @@ Feature: Managing Group data
     as an API client
     I need to be able to manage Group data via requests
 
+    @api @group @protected @success
     Scenario Outline: Creating Group entity
         Given client is authorized to do an action
         And "POST" is being sent to "/groups"
@@ -18,6 +19,7 @@ Feature: Managing Group data
             | winter break  |
             | special event |
 
+    @api @group @public @success
     Scenario Outline: Showing selected Group data
         Given client is authorized to do an action
         And "GET" is being sent to "/groups/<id>"
@@ -34,6 +36,7 @@ Feature: Managing Group data
             | 4  |
             | 5  |
 
+    @api @group @protected @success
     Scenario Outline: Updating selected Group data
         Given client is authorized to do an action
         And "PATCH" is being sent to "/groups/<id>"
@@ -50,6 +53,7 @@ Feature: Managing Group data
             | 4  | summer break |
             | 5  | some-event   |
 
+    @api @group @public @success
     Scenario: Showing all groups data
         Given "GET" is being sent to "/groups"
         When request is sent
@@ -57,6 +61,7 @@ Feature: Managing Group data
         And response original content should be of type "\Illuminate\Database\Eloquent\Collection"
         And response code should be equal to 200
 
+    @api @group @protected @success
     Scenario Outline: Deleting selected Group data
         Given client is authorized to do an action
         And "DELETE" is being sent to "/groups/<id>"
