@@ -10,7 +10,7 @@ use Throwable;
 
 class Handler extends ExceptionHandler
 {
-    use HandlerExceptions;
+    use handleExceptions;
 
     /**
      * A list of the inputs that are never flashed for validation exceptions.
