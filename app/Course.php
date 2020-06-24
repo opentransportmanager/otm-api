@@ -33,12 +33,8 @@ class Course extends Model
         'updated_at',
     ];
 
-    protected $casts = [
-        'start_time' => 'datetime:H:i',
-    ];
-
     /**
-     * Returns a 'start_time' attribute formatted to Hours:Minutes format
+     * Returns a 'start_time' attribute formatted to Hours:Minutes format.
      */
     public function getStartTimeAttribute($value): string
     {
