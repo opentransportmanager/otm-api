@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Services\AuthenticationService;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Hook\Scope\BeforeFeatureScope;
 use Illuminate\Http\JsonResponse;
@@ -35,10 +36,11 @@ class RequestContext implements Context
      */
     private function authorizeAsAdmin(): void
     {
-        $authRequest = Request::create('/login', 'POST');
-        $authRequest['email'] = 'admin@example.com';
-        $authRequest['password'] = 'admin';
-        $this->token = json_decode(app()->handle($authRequest)->getContent())->token;
+        $authService = new AuthenticationService();
+        $this->token = $authService->createToken([
+            'email' => 'admin@example.com',
+            'password' => 'admin',
+        ])['token'];
     }
 
     /**
