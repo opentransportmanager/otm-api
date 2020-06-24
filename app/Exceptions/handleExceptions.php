@@ -12,7 +12,7 @@ use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
-trait HandlerExceptions
+trait handleExceptions
 {
     public function apiException(Throwable $exception): Response
     {
