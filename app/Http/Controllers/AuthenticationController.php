@@ -11,13 +11,13 @@ use Illuminate\Http\Response;
 
 class AuthenticationController extends Controller
 {
+    /**
+     * @param AuthenticationRequest $request
+     * @param AuthenticationService $service
+     */
     public function login(AuthenticationRequest $request, AuthenticationService $service): JsonResponse
     {
         $response = $service->createToken($request->validated());
-
-        if (!$response) {
-            return response()->json(['These credentials do not match our records.'], Response::HTTP_UNAUTHORIZED);
-        }
 
         return response()->json($response, Response::HTTP_OK);
     }

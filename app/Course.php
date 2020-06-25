@@ -33,9 +33,13 @@ class Course extends Model
         'updated_at',
     ];
 
-    protected $casts = [
-        'start_time' => 'datetime:H:i',
-    ];
+    /**
+     * Returns a 'start_time' attribute formatted to Hours:Minutes format.
+     */
+    public function getStartTimeAttribute($value): string
+    {
+        return Carbon::parse($value)->format(config('formats.hours_minutes'));
+    }
 
     /**
      * Returns an instance of (inverse one-to-many) relation with Group class.
