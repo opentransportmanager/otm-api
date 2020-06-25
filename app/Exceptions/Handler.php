@@ -10,7 +10,7 @@ use Throwable;
 
 class Handler extends ExceptionHandler
 {
-    use handleExceptions;
+    use HandlerExceptions;
 
     /**
      * A list of the inputs that are never flashed for validation exceptions.
@@ -30,7 +30,7 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $exception): Response
     {
         try {
-            $error = $this->apiException($exception);
+            $error = $this->handleExceptions($exception);
 
             return response($error, $error->getStatusCode());
         } catch (Throwable $e) {

@@ -12,9 +12,9 @@ use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
-trait handleExceptions
+trait HandlerExceptions
 {
-    public function apiException(Throwable $exception): Response
+    public function handleExceptions(Throwable $exception): Response
     {
         if ($exception instanceof ModelNotFoundException) {
             return response(['message' => 'Model not found'], Response::HTTP_NOT_FOUND);
