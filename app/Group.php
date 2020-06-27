@@ -7,6 +7,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon as Carbon;
+use Illuminate\Support\Collection;
 
 /**
  * Group model.
@@ -21,6 +22,10 @@ class Group extends Model
 {
     protected $fillable = [
         'name',
+    ];
+    protected $hidden = [
+        'created_at',
+        'updated_at',
     ];
 
     /**

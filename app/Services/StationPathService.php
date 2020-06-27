@@ -26,7 +26,7 @@ class StationPathService
     }
 
     /**
-     * Shows timetable based on selected Station and Path combination.
+     * Shows timetable based on selected Station and Path combination with courses and groups.
      */
     public function showTimetable(Station $station, Path $path): array
     {
@@ -36,6 +36,7 @@ class StationPathService
             $departure_time = Carbon::parse($course->start_time);
             $departure_time->addMinutes($travel_time);
             $course->setAttribute('departure_time', $departure_time->format(config('formats.hours_minutes')));
+            $course->setAttribute('group', $course->group);
         }
 
         return $timetable->toArray();
