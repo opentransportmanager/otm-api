@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\Response;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -25,12 +25,16 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @return \Symfony\Component\HttpFoundation\Response
-     *
      * @throws \Throwable
      */
     public function render($request, Throwable $exception): Response
     {
-        return response($this->apiException($request, $exception));
+        try {
+            $error = $this->handleExceptions($exception);
+
+            return response($error, $error->getStatusCode());
+        } catch (Throwable $e) {
+            return parent::render($request, $exception);
+        }
     }
 }

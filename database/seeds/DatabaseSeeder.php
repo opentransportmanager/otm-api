@@ -13,13 +13,14 @@ class DatabaseSeeder extends Seeder
     {
         if (App::environment('local', 'development', 'staging')) {
             $this->call([
-            UsersTableSeeder::class,
-            BuslineSeeder::class,
-            StationSeeder::class,
-            GroupSeeder::class,
-            PathSeeder::class,
-            CourseSeeder::class,
-            PathStationSeeder::class,
+                BuslineSeeder::class,
+                StationSeeder::class,
+                GroupSeeder::class,
+                PathSeeder::class,
+                CourseSeeder::class,
+                PathStationSeeder::class,
+                BouncerSeeder::class,
+                UsersTableSeeder::class,
             ]);
         }
     }

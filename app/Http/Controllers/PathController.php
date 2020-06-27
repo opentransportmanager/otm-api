@@ -57,6 +57,6 @@ class PathController extends Controller
     {
         $path->delete();
 
-        return response()->json(['message'=> __('messages.path.deleted')]);
+        return response()->json(['message' => __('messages.path.deleted')]);
     }
 }

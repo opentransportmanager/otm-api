@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Services\AuthenticationService;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Hook\Scope\BeforeFeatureScope;
 use Illuminate\Http\JsonResponse;
@@ -18,20 +19,48 @@ class RequestContext implements Context
     private JsonResponse $response;
     private Request $request;
     private array $nestedArray;
+    private string $token = '';
 
     /** @BeforeFeature */
     public static function setupFeature(BeforeFeatureScope $scope): void
     {
-        Artisan::call('migrate:refresh');
+        Artisan::call('migrate:fresh');
+        $bouncerSeeder = new BouncerSeeder();
+        $bouncerSeeder->run();
+        $userTableSeeder = new UsersTableSeeder();
+        $userTableSeeder->run();
+    }
+
+    /**
+     * Attempts to login as Admin user and saves token from response.
+     */
+    private function authorizeAsAdmin(): void
+    {
+        $authService = new AuthenticationService();
+        $this->token = $authService->createToken([
+            'email' => 'admin@example.com',
+            'password' => 'admin',
+        ])['token'];
+    }
+
+    /**
+     * @Given client is authorized to do an action
+     */
+    public function isAuthorized(): void
+    {
+        if (!$this->token) {
+            $this->authorizeAsAdmin();
+        }
     }
 
     /**
      * @Given :method is being sent to :endpoint
      */
-    public function IsBeingSentTo(string $method, string $endpoint): void
+    public function isBeingSentTo(string $method, string $endpoint): void
     {
         $this->request = Request::create($endpoint, $method);
         $this->request->headers->set('accept', 'application/json');
+        $this->request->headers->set('Authorization', 'Bearer '.$this->token);
     }
 
     /**
@@ -67,6 +96,16 @@ class RequestContext implements Context
     }
 
     /**
+     * @Then model :model with :id with field :field should be equal to :data
+     */
+    public function modelIdContains(string $model, int $id, string $field, string $data): void
+    {
+        $model = config('app.namespace').$model;
+        $instance = $model::where('id', $id)->first();
+        Assert::assertEquals($data, $instance->$field);
+    }
+
+    /**
      * @Given the table :table contains :id
      */
     public function theTableContains(string $table, int $id): void
@@ -75,12 +114,12 @@ class RequestContext implements Context
     }
 
     /**
-     * @Given required :class object is surely existing
+     * @Given required :class object is already existing
      */
     public function objectExists(string $class): void
     {
-        factory('App\\'.$class, 1)->create()->each(function ($busline): void {
-            $busline->save();
+        factory(config('app.namespace').$class, 1)->create()->each(function ($object): void {
+            $object->save();
         });
     }
 
