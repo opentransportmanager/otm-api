@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Carbon as Carbon;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 
 /**
  * Path model.
@@ -39,7 +40,10 @@ class Path extends Model
      */
     public function stations(): BelongsToMany
     {
-        return $this->belongsToMany(Station::class)->withTimestamps()->withPivot('travel_time');
+        return $this->belongsToMany(Station::class)
+            ->withTimestamps()
+            ->withPivot('travel_time')
+            ->orderBy('travel_time');
     }
 
     /**
