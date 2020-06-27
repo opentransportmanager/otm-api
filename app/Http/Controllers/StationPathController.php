@@ -27,7 +27,7 @@ class StationPathController extends Controller
     }
 
     /**
-     * Show timetable of selected Station on selected Path
+     * Show timetable of selected Station on selected Path.
      */
     public function showTimetable(Station $station, Path $path): JsonResponse
     {

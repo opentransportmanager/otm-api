@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App;
 
 use Illuminate\Database\Eloquent\Relations\Pivot;
+use Illuminate\Support\Carbon;
 
 /**
  * PathStation intermediate model.
@@ -12,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  * @property int         $id
  * @property int         $path_id
  * @property int         $station_id
- * @property Carbon      $travel_time
+ * @property int         $travel_time
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  */
@@ -25,8 +26,8 @@ class PathStation extends Pivot
      */
     public static function findIntermediateModel(int $path_id, int $station_id): PathStation
     {
-        return  PathStation::where('station_id', $station_id)
-        ->where('path_id', $path_id)
-        ->first();
+        return PathStation::where('station_id', $station_id)
+            ->where('path_id', $path_id)
+            ->first();
     }
 }
