@@ -140,4 +140,13 @@ class RequestContext implements Context
         $this->nestedArray[$subkey] = $value;
         $this->request[$key] = $this->nestedArray;
     }
+
+    /**
+     * @Given my request data contains array:
+     */
+    public function myRequestDataContainsArray(TableNode $table)
+    {
+        $this->request['*'] = $table->getColumnsHash()[0];
+    }
+
 }
