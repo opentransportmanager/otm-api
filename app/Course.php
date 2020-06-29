@@ -34,6 +34,10 @@ class Course extends Model
         'group_id',
     ];
 
+    protected $with = [
+        'group',
+    ];
+
     /**
      * Returns a 'start_time' attribute formatted to Hours:Minutes format.
      */
@@ -52,8 +56,6 @@ class Course extends Model
 
     /**
      * Returns an instance of (inverse one-to-many) relation with Path class.
-     *
-     * @return void
      */
     public function path(): BelongsTo
     {
