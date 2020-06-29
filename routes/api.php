@@ -28,10 +28,7 @@ Route::apiResource('/groups', 'GroupController')->only(['index', 'show']);
 Route::apiResource('/paths', 'PathController')->only(['index', 'show']);
 Route::apiResource('/courses', 'CourseController')->only(['index', 'show']);
 
-Route::post('/paths/{path}/stations', 'PathStationController@attachStations');
-Route::delete('/paths/{path}/stations', 'PathStationController@detachStations');
 Route::get('/paths/{path}/stations', 'PathStationController@showAttachedStations');
-Route::patch('/paths/{path}/stations/{station}', 'PathStationController@update');
 Route::get('/stations/{station}/paths', 'StationPathController@showAttachedPaths');
 Route::get('/stations/{station}/paths/{path}', 'StationPathController@showTimetable');
 
@@ -54,5 +51,8 @@ Route::middleware('auth:sanctum')->group(function (): void {
         Route::apiResource('/groups', 'GroupController')->only(['store', 'update', 'destroy']);
         Route::apiResource('/paths', 'PathController')->only(['store', 'update', 'destroy']);
         Route::apiResource('/courses', 'CourseController')->only(['store', 'update', 'destroy']);
+        Route::post('/paths/{path}/stations', 'PathStationController@attachStations');
+        Route::delete('/paths/{path}/stations', 'PathStationController@detachStations');
+        Route::patch('/paths/{path}/stations/{station}', 'PathStationController@update');
     });
 });
