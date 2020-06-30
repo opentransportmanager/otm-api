@@ -14,13 +14,13 @@ use Illuminate\Support\Collection;
 /**
  * Path model.
  *
- * @property int                  $id
- * @property int                  $busline_id
- * @property Carbon|null          $created_at
- * @property Carbon|null          $updated_at
+ * @property int $id
+ * @property int $busline_id
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property Collection|Station[] $stations
- * @property Collection|Course[]  $courses
- * @property Busline              $busline
+ * @property Collection|Course[] $courses
+ * @property Busline $busline
  */
 class Path extends Model
 {

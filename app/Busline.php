@@ -12,10 +12,10 @@ use Illuminate\Support\Collection;
 /**
  * Busline model.
  *
- * @property int               $id
- * @property string            $number
- * @property Carbon|null       $created_at
- * @property Carbon|null       $updated_at
+ * @property int $id
+ * @property string $number
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property Collection|Path[] $paths
  */
 class Busline extends Model

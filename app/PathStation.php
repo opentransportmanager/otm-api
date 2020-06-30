@@ -10,10 +10,10 @@ use Illuminate\Support\Carbon;
 /**
  * PathStation intermediate model.
  *
- * @property int         $id
- * @property int         $path_id
- * @property int         $station_id
- * @property int         $travel_time
+ * @property int $id
+ * @property int $path_id
+ * @property int $station_id
+ * @property int $travel_time
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  */

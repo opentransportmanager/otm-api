@@ -9,11 +9,11 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Role model.
  *
- * @property int    $id
+ * @property int $id
  * @property string $name
  * @property string $title
- * @property int    $level
- * @property int    $scope
+ * @property int $level
+ * @property int $scope
  */
 class Role extends Model
 {

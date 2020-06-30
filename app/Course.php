@@ -11,14 +11,14 @@ use Illuminate\Support\Carbon as Carbon;
 /**
  * Course model.
  *
- * @property int         $id
- * @property int         $path_id
- * @property int         $group_id
- * @property string      $start_time
+ * @property int $id
+ * @property int $path_id
+ * @property int $group_id
+ * @property string $start_time
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property Path        $path
- * @property Group       $group
+ * @property Path $path
+ * @property Group $group
  */
 class Course extends Model
 {

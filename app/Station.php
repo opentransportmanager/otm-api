@@ -9,16 +9,17 @@ use Grimzy\LaravelMysqlSpatial\Types\Point;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Carbon as Carbon;
+use Illuminate\Support\Collection;
 
 /**
  * Station model.
  *
- * @property int               $id
- * @property string            $name
- * @property Carbon|null       $created_at
- * @property Carbon|null       $updated_at
+ * @property int $id
+ * @property string $name
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property Collection|Path[] $paths
- * @property Point             $position
+ * @property Point $position
  */
 class Station extends Model
 {
