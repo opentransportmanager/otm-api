@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Requests;
 
-class StoreBuslineSubscription extends BaseRequest
+class StoreBuslineUser extends BaseRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -12,7 +12,6 @@ class StoreBuslineSubscription extends BaseRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'required|exists:users,id|distinct',
             'busline_id' => 'required|exists:buslines,id|distinct',
         ];
     }

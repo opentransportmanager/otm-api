@@ -6,17 +6,17 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBuslinesSubscriptionTable extends Migration
+class CreateBuslineUserTable extends Migration
 {
     /**
      * Run the migrations.
      */
     public function up()
     {
-        Schema::create('busline_subscription', function (Blueprint $table): void {
+        Schema::create('busline_user', function (Blueprint $table): void {
             $table->id();
-            $table->foreignId('user_id')->constrained();
             $table->foreignId('busline_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }
