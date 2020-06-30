@@ -6,8 +6,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AttachStationsToPath;
 use App\Http\Requests\DetachStationsFromPath;
+use App\Http\Requests\UpdatePathStation;
 use App\Path;
 use App\Services\PathStationService;
+use App\Station;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
@@ -46,5 +48,15 @@ class PathStationController extends Controller
         $stations = $this->pathStationService->showAttachedStations($path);
 
         return response()->json($stations);
+    }
+
+    /**
+     * Update travel_time for selected PathStation.
+     */
+    public function update(UpdatePathStation $request, Path $path, Station $station): JsonResponse
+    {
+        $this->pathStationService->update($request->validated(), $path, $station);
+
+        return response()->json(['message' => __('messages.path_station.updated')]);
     }
 }

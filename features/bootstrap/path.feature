@@ -8,7 +8,7 @@ Feature: Managing Path data
         Given client is authorized to do an action
         And "POST" is being sent to "/paths"
         And my request data contains "busline_id" equal "<busline_id>"
-        And required "Busline" object is already existing
+        And required 1 "Busline" object is already existing
         When request is sent
         Then response should be of type "\Illuminate\Http\JsonResponse"
         And response code should be equal to 201
@@ -40,7 +40,7 @@ Feature: Managing Path data
         Given client is authorized to do an action
         And "PATCH" is being sent to "/paths/<id>"
         And my request data contains "busline_id" equal <busline_id>
-        And required "Busline" object is already existing
+        And required 1 "Busline" object is already existing
         When request is sent
         Then response should be of type "\Illuminate\Http\JsonResponse"
         And model "Path" with <id> with field "busline_id" should be equal to "<busline_id>"

@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Services\AuthenticationService;
 use Behat\Behat\Context\Context;
 use Behat\Behat\Hook\Scope\BeforeFeatureScope;
+use Behat\Gherkin\Node\TableNode;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
@@ -114,11 +115,11 @@ class RequestContext implements Context
     }
 
     /**
-     * @Given required :class object is already existing
+     * @Given required :amount :class object(s) is/are already existing
      */
-    public function objectExists(string $class): void
+    public function requiredObjectsAreAlreadyExisting(int $amount, string $class)
     {
-        factory(config('app.namespace').$class, 1)->create()->each(function ($object): void {
+        factory(config('app.namespace').$class, $amount)->create()->each(function ($object): void {
             $object->save();
         });
     }
@@ -139,4 +140,13 @@ class RequestContext implements Context
         $this->nestedArray[$subkey] = $value;
         $this->request[$key] = $this->nestedArray;
     }
+
+    /**
+     * @Given my request data contains array:
+     */
+    public function myRequestDataContainsArray(TableNode $table)
+    {
+        $this->request['*'] = $table->getColumnsHash()[0];
+    }
+
 }

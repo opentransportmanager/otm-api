@@ -13,11 +13,11 @@ use Silber\Bouncer\Database\HasRolesAndAbilities;
 /**
  * User model.
  *
- * @property int         $id
- * @property string      $name
- * @property string      $email
+ * @property int $id
+ * @property string $name
+ * @property string $email
  * @property Carbon|null $email_verified_at
- * @property string      $password
+ * @property string $password
  */
 class User extends Authenticatable
 {
@@ -26,11 +26,14 @@ class User extends Authenticatable
     use Notifiable;
 
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'password',
     ];
 
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     protected $casts = [

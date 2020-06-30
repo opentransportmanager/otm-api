@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\Path;
+use App\PathStation;
 use App\Station;
 
 class PathStationService
@@ -41,5 +42,13 @@ class PathStationService
         }
 
         return $stations->toArray();
+    }
+
+    /**
+     * Updates travel_time in path_station pivot table.
+     */
+    public function update(array $travelTime, Path $path, Station $station): void
+    {
+        PathStation::findIntermediateModel($path->id, $station->id)->update($travelTime);
     }
 }

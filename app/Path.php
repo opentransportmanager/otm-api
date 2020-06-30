@@ -8,18 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Carbon as Carbon;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 
 /**
  * Path model.
  *
- * @property int                  $id
- * @property int                  $busline_id
- * @property Carbon|null          $created_at
- * @property Carbon|null          $updated_at
+ * @property int $id
+ * @property int $busline_id
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property Collection|Station[] $stations
- * @property Collection|Course[]  $courses
- * @property Busline              $busline
+ * @property Collection|Course[] $courses
+ * @property Busline $busline
  */
 class Path extends Model
 {
@@ -27,12 +28,22 @@ class Path extends Model
         'busline_id',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'pivot',
+        'busline',
+    ];
+
     /**
      * Returns an instance of (many-to-many) relation with Station model.
      */
     public function stations(): BelongsToMany
     {
-        return $this->belongsToMany(Station::class)->withTimestamps()->withPivot('travel_time');
+        return $this->belongsToMany(Station::class)
+            ->withTimestamps()
+            ->withPivot('travel_time')
+            ->orderBy('travel_time');
     }
 
     /**

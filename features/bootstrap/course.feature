@@ -10,9 +10,9 @@ Feature: Managing Course data
         And my request data contains "path_id" equal "<path_id>"
         And my request data contains "group_id" equal "<group_id>"
         And my request data contains "start_time" equal "<start_time>"
-        And required "Busline" object is already existing
-        And required "Path" object is already existing
-        And required "Group" object is already existing
+        And required 1 "Busline" object is already existing
+        And required 1 "Path" object is already existing
+        And required 1 "Group" object is already existing
         When request is sent
         Then response should be of type "\Illuminate\Http\JsonResponse"
         And response code should be equal to 201
