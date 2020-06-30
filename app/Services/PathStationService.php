@@ -47,8 +47,8 @@ class PathStationService
     /**
      * Updates travel_time in path_station pivot table.
      */
-    public function update(array $travel_time, Path $path, Station $station)
+    public function update(array $travelTime, Path $path, Station $station): void
     {
-        PathStation::findIntermediateModel($path->id, $station->id)->update($travel_time);
+        PathStation::findIntermediateModel($path->id, $station->id)->update($travelTime);
     }
 }

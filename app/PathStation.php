@@ -24,10 +24,10 @@ class PathStation extends Pivot
     /**
      * Returns an intermediate model instance containing a selected path_id and station_id combination.
      */
-    public static function findIntermediateModel(int $path_id, int $station_id): PathStation
+    public static function findIntermediateModel(int $pathId, int $stationId): PathStation
     {
-        return PathStation::where('station_id', $station_id)
-            ->where('path_id', $path_id)
-            ->first();
+        return PathStation::where('station_id', $stationId)
+            ->where('path_id', $pathId)
+            ->firstOrFail();
     }
 }
