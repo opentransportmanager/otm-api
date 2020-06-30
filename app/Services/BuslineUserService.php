@@ -9,19 +9,21 @@ use App\User;
 class BuslineUserService
 {
     /**
-     * Attaches array of Station ids and relative travel time to each to provided Path model.
+     * Attaches Busline id to User model.
      */
     public function subscribeBusline($busline, User $user): void
     {
         $user->buslines()->attach($busline);
     }
+
     /**
-     * Attaches array of Station ids and relative travel time to each to provided Path model.
+     * Detaches Busline id from User model.
      */
     public function unsubscribeBusline($busline, User $user): void
     {
         $user->buslines()->detach($busline);
     }
+
     /**
      * Shows Buslines subscribed by User.
      */
@@ -29,10 +31,6 @@ class BuslineUserService
     {
         $buslines = $user->buslines;
 
-        foreach ($buslines as $busline) {
-            $busline->setAttribute('busline_number', $busline->number);
-        }
-
-        return $busline->toArray();
+        return $buslines->makeHidden('pivot')->toArray();
     }
 }
