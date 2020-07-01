@@ -36,9 +36,9 @@ Done! Your application should be by default accesible at:
 ```
 http://localhost:8000
 ```
-######And now it's ready for further development!
+###### And now it's ready for further development!
 
-###Optional
+### Optional
 If you want to run tests locally then run
 ```
 ./vendor/bin/behat
@@ -54,11 +54,12 @@ Available docker services
 - webserver (nginx, default external port 8000)
 - redis
 
-#####Omitting docker
+##### Omitting docker
 At the current stage you can also build and test this application on your local machine while omitting docker.  
 The general requirements is PHP 7.4 with MySQL extension enabled.  
 You will also need to configure .env file to match your local database configuration and use built-in php server.
-##Documentation
+
+## Documentation
 - TBD
 
 
