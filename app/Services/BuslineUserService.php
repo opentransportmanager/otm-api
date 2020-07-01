@@ -11,16 +11,18 @@ class BuslineUserService
     /**
      * Attaches Busline id to User model.
      */
-    public function subscribeBusline($busline, User $user): void
+    public function subscribeBusline($busline): void
     {
+        $user = auth()->user();
         $user->buslines()->syncWithoutDetaching($busline);
     }
 
     /**
      * Detaches Busline id from User model.
      */
-    public function unsubscribeBusline($busline, User $user): void
+    public function unsubscribeBusline($busline): void
     {
+        $user = auth()->user();
         $user->buslines()->detach($busline);
     }
 

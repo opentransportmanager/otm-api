@@ -20,9 +20,9 @@ class BuslineUserController extends Controller
     /**
      * Creating relations between the Busline and the User
      */
-    public function subscribe(StoreBuslineUser $request, User $user): JsonResponse
+    public function subscribe(StoreBuslineUser $request): JsonResponse
     {
-        $this->buslineUserService->subscribeBusline($request->validated(), $user);
+        $this->buslineUserService->subscribeBusline($request->validated());
 
         return response()->json(['message' => __('messages.busline_user.subscribed')], Response::HTTP_CREATED);
     }
@@ -30,9 +30,9 @@ class BuslineUserController extends Controller
     /**
      * Deleting relations between the Busline and the User
      */
-    public function unsubscribe(StoreBuslineUser $request, User $user): JsonResponse
+    public function unsubscribe(StoreBuslineUser $request): JsonResponse
     {
-        $this->buslineUserService->unsubscribeBusline($request->validated(), $user);
+        $this->buslineUserService->unsubscribeBusline($request->validated());
 
         return response()->json(['message' => __('messages.busline_user.unsubscribed')], Response::HTTP_CREATED);
     }

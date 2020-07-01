@@ -34,9 +34,9 @@ Route::get('/stations/{station}/paths/{path}', 'StationPathController@showTimeta
 
 Route::middleware('auth:sanctum')->group(function (): void {
 
-    Route::get('/users/{user}/buslines', 'BuslineUserController@showSubscribedBuslines');
-    Route::post('/users/{user}/buslines', 'BuslineUserController@subscribe');
-    Route::delete('/users/{user}/buslines', 'BuslineUserController@unsubscribe');
+    Route::get('/users/subscriptions', 'BuslineUserController@showSubscribedBuslines');
+    Route::post('/users/subscribe', 'BuslineUserController@subscribe');
+    Route::delete('/users/unsubscribe', 'BuslineUserController@unsubscribe');
 
     Route::group(['middleware' => 'can:manage, App\Role'], function () {
         Route::get('/roles/assign/{user}', 'RoleController@assignRole');
