@@ -13,7 +13,7 @@ class BuslineUserService
      */
     public function subscribeBusline($busline, User $user): void
     {
-        $user->buslines()->attach($busline);
+        $user->buslines()->syncWithoutDetaching($busline);
     }
 
     /**
