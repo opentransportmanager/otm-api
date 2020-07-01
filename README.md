@@ -15,22 +15,7 @@ Run docker containers from the project root:
 ```
 docker-compose up -d
 ```
-It will auto-install required dependencies and create .env file with application key  
-
-Set up tethered SSH connection with php-fpm container in your terminal:
-```
-docker exec -it php-fpm bash
-```
-
-Migrate the database:
-```
-php artisan migrate
-```
-
-(Optional) Seed the database:
-```
-php artisan db:seed
-```
+It will auto-install required dependencies, create matching .env file with new application key and migrate the database 
 
 Done! Your application should be by default accesible at:
 ```
@@ -38,7 +23,19 @@ http://localhost:8000
 ```
 ###### And now it's ready for further development!
 
+### Development
+Set up tethered SSH connection with php-fpm container in your terminal:
+```
+docker exec -it php-fpm bash
+```
+You now have access to various useful tools (php, composer, apt-get and such)
+
 ### Optional
+If you want to seed the database:
+```
+php artisan db:seed
+```
+
 If you want to run tests locally then run
 ```
 ./vendor/bin/behat

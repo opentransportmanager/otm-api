@@ -36,8 +36,4 @@ services:
         - .:/application
         - ./phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/7.4/fpm/conf.d/99-overrides.ini
       command: >
-        /bin/bash -c
-        "composer install &&
-        cp .env.example .env &&
-        php artisan key:generate &&
-        tail -f /dev/null"
+        /bin/bash -c "./phpdocker/php-fpm/setup.sh"
