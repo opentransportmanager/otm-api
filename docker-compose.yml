@@ -1,8 +1,5 @@
 version: "3.1"
-volumes:
-  postgis-data:
 services:
-
     redis:
       image: redis:alpine
       container_name: redis
@@ -38,4 +35,9 @@ services:
       volumes:
         - .:/application
         - ./phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/7.4/fpm/conf.d/99-overrides.ini
-
+      command: >
+        /bin/bash -c
+        "composer install &&
+        cp .env.example .env &&
+        php artisan key:generate &&
+        tail -f /dev/null"
