@@ -6,7 +6,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreBuslineUser;
 use App\Services\BuslineUserService;
-use App\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
@@ -38,11 +37,11 @@ class BuslineUserController extends Controller
     }
 
     /**
-     * Show stations attached to a selected path.
+     * Shows Buslines subscribed by current User.
      */
-    public function showSubscribedBuslines(User $user): JsonResponse
+    public function userSubscribedBuslines(): JsonResponse
     {
-        $buslines = $this->buslineUserService->showSubscribedBuslines($user);
+        $buslines = $this->buslineUserService->userSubscribedBuslines();
 
         return response()->json($buslines);
     }

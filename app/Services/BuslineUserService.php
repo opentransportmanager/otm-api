@@ -29,8 +29,9 @@ class BuslineUserService
     /**
      * Shows Buslines subscribed by User.
      */
-    public function showSubscribedBuslines(User $user): array
+    public function userSubscribedBuslines(): array
     {
+        $user = auth()->user();
         $buslines = $user->buslines;
 
         return $buslines->makeHidden('pivot')->toArray();
