@@ -1,8 +1,5 @@
 version: "3.1"
-volumes:
-  postgis-data:
 services:
-
     redis:
       image: redis:alpine
       container_name: redis
@@ -39,3 +36,12 @@ services:
         - .:/application
         - ./phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/7.4/fpm/conf.d/99-overrides.ini
 
+    setup:
+      build: phpdocker/php-fpm
+      container_name: setup
+      working_dir: /application
+      volumes:
+          - .:/application
+      restart: on-failure
+      command: >
+        /bin/bash -c "./phpdocker/php-fpm/setup.sh"
