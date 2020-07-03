@@ -21,35 +21,56 @@ Done! Your application should be by default accesible at:
 ```
 http://localhost:8000
 ```
-###### And now it's ready for further development!
+###### Now it's ready for further development!
 
+### Optional configuration
+##### Customizing ports
+Docker uses port forwarding to expose additional ports outside of container.  
+In docker-compose.yml this is declared with external_port:internal_port formula
+e.g.
+```yaml
+ports:
+    - "8000:80"
+```
+If you want to change webserver or database ports, simply change the first number and restart the service.  
+Changes in database service will require tweaking DB_PORT in .env file.
+
+##### Running additional seeders
+In your .env file set:
+```
+APP_ENV=testing
+```
+
+Then run setup service again:
+```
+docker-compose up setup
+```
 ### Development
-Set up tethered SSH connection with php-fpm container in your terminal:
+##### Using terminal inside container
+Running all CLI commands (e.g. php, composer) from inside the service is highly recommeded   
+For general purposes you can open SSH connection with php-fpm Bash shell
 ```
 docker exec -it php-fpm bash
 ```
-You now have access to various useful tools (php, composer, apt-get and such)
 
-### Optional
-If you want to seed the database:
-```
-php artisan db:seed
-```
-
-If you want to run tests locally then run
-```
-./vendor/bin/behat
-```
 If you need universal command to set up SSH with any running Docker shell via local terminal
 ```
 docker exec -it <container_name> /bin/sh -c "[ -e /bin/bash ] && /bin/bash || /bin/sh"
 ```
+##### Testing with Behat (Gherkin implementation)
+
+To run tests locally type
+```
+./vendor/bin/behat
+```
+Note: Github CI will run these on push and pull requests too
 
 Available docker services
 - php-fpm (redis, mysql and composer included)
 - mariadb (default external port 8003)
 - webserver (nginx, default external port 8000)
 - redis
+- setup (runs automated project setup jobs)
 
 ##### Omitting docker
 At the current stage you can also build and test this application on your local machine while omitting docker.  
