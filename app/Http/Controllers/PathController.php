@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Events\PathDeleted;
 use App\Http\Requests\StorePath;
 use App\Http\Requests\UpdatePath;
 use App\Path;
@@ -55,6 +56,7 @@ class PathController extends Controller
      */
     public function destroy(Path $path): JsonResponse
     {
+        event(new PathDeleted($path));
         $path->delete();
 
         return response()->json(['message' => __('messages.path.deleted')]);

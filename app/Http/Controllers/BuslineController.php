@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Busline;
+use App\Events\BuslineDeleted;
 use App\Http\Requests\StoreBusline;
 use App\Http\Requests\UpdateBusline;
 use Illuminate\Http\JsonResponse;
@@ -55,6 +56,7 @@ class BuslineController extends Controller
      */
     public function destroy(Busline $busline): JsonResponse
     {
+        event(new BuslineDeleted($busline));
         $busline->delete();
 
         return response()->json(['message' => __('messages.busline.deleted')]);

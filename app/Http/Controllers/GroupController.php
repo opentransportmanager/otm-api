@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Events\GroupDeleted;
 use App\Group;
 use App\Http\Requests\StoreGroup;
 use App\Http\Requests\UpdateGroup;
@@ -55,6 +56,7 @@ class GroupController extends Controller
      */
     public function destroy(Group $group): JsonResponse
     {
+        event(new GroupDeleted($group));
         $group->delete();
 
         return response()->json(['message' => __('messages.group.deleted')]);

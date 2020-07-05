@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Events\StationDeleted;
 use App\Http\Requests\StoreStation;
 use App\Http\Requests\UpdateStation;
 use App\Station;
@@ -55,6 +56,7 @@ class StationController extends Controller
      */
     public function destroy(Station $station): JsonResponse
     {
+        event(new StationDeleted($station));
         $station->delete();
 
         return response()->json(['message' => __('messages.station.deleted')]);
