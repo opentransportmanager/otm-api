@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App;
 
+use App\Events\BuslineDeleted;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon as Carbon;
@@ -27,6 +28,10 @@ class Busline extends Model
     protected $hidden = [
         'created_at',
         'updated_at',
+    ];
+
+    protected $dispatchesEvents = [
+        'deleting' => BuslineDeleted::class,
     ];
 
     /**

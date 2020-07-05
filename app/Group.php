@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App;
 
+use App\Events\GroupDeleted;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon as Carbon;
@@ -26,6 +27,10 @@ class Group extends Model
     protected $hidden = [
         'created_at',
         'updated_at',
+    ];
+
+    protected $dispatchesEvents = [
+        'deleting' => GroupDeleted::class,
     ];
 
     /**

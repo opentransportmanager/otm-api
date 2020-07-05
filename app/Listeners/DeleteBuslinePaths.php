@@ -13,6 +13,9 @@ class DeleteBuslinePaths
      */
     public function handle(BuslineDeleted $event): void
     {
-        $event->busline->paths()->delete();
+        $paths = $event->busline->paths()->get();
+        foreach ($paths as $path) {
+            $path->delete();
+        }
     }
 }
