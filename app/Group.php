@@ -16,7 +16,7 @@ use Illuminate\Support\Collection;
  * @property string $name
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property Collection|Busline[] $buslines
+ * @property Collection|Busline[] $courses
  */
 class Group extends Model
 {
@@ -29,10 +29,10 @@ class Group extends Model
     ];
 
     /**
-     * Returns an instance of (one-to-many) relation with Busline class.
+     * Returns an instance of (one-to-many) relation with Course class.
      */
-    public function buslines(): HasMany
+    public function courses(): HasMany
     {
-        return $this->hasMany(Station::class);
+        return $this->hasMany(Course::class);
     }
 }
