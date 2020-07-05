@@ -40,5 +40,6 @@ return [
     'busline_user' => [
         'subscribed' => 'Busline subscribed successfully',
         'unsubscribed' => 'Busline unsubscribed successfully',
+        'notunsubscribed' => 'Subscription not found',
     ],
 ];

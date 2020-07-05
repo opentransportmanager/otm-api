@@ -36,9 +36,12 @@ class BuslineUserController extends Controller
     {
         $busline = $request->validated();
         $user = $request->user();
-        $this->buslineUserService->unsubscribeBusline($busline, $user);
-
-        return response()->json(['message' => __('messages.busline_user.unsubscribed')], Response::HTTP_CREATED);
+        $response = $this->buslineUserService->unsubscribeBusline($busline, $user);
+        if ($response == false) {
+            return response()->json(['message' => __('messages.busline_user.notunsubscribed')], Response::HTTP_NOT_FOUND);
+        } else {
+            return response()->json(['message' => __('messages.busline_user.unsubscribed')], Response::HTTP_CREATED);
+        }
     }
 
     /**

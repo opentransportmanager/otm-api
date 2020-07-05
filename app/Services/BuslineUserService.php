@@ -17,9 +17,12 @@ class BuslineUserService
     /**
      * Detaches Busline id from User model.
      */
-    public function unsubscribeBusline($busline, $user): void
+    public function unsubscribeBusline($busline, $user): bool
     {
+        $exists = $user->buslines()->where('busline_id', $busline['busline_id'])->exists();
         $user->buslines()->detach($busline);
+
+        return $exists;
     }
 
     /**
