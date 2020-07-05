@@ -52,5 +52,3 @@ Feature: Showing timetables
             | id |
             | 4  |
             | 5  |
-
-

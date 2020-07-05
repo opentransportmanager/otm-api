@@ -13,7 +13,7 @@ class DeleteCoursesSubscriber
     /**
      * Handle Path delete event.
      */
-    public function handlePathDeleted(PathDeleted $event)
+    public function handlePathDeleted(PathDeleted $event): void
     {
         $event->path->courses()->delete();
     }
@@ -21,7 +21,7 @@ class DeleteCoursesSubscriber
     /**
      * Handle Group delete event.
      */
-    public function handleGroupDeleted(GroupDeleted $event)
+    public function handleGroupDeleted(GroupDeleted $event): void
     {
         $event->group->courses()->delete();
     }
