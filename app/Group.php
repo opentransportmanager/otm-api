@@ -17,7 +17,7 @@ use Illuminate\Support\Collection;
  * @property string $name
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property Collection|Busline[] $courses
+ * @property Collection|Course[] $courses
  */
 class Group extends Model
 {
