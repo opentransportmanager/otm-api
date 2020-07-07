@@ -46,7 +46,7 @@ class Course extends Model
     public static function filter(): QueryBuilder
     {
         return QueryBuilder::for(static::class)
-            ->allowedFilters([AllowedFilter::exact('path_id'), AllowedFilter::exact('number')], 'start_time')
+            ->allowedFilters([AllowedFilter::exact('path_id'), AllowedFilter::exact('number'), 'start_time'])
             ->allowedSorts('id', 'path_id', 'group_id', 'start_time')
             ->allowedIncludes('groups', 'paths');
     }
