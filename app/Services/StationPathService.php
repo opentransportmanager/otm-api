@@ -39,6 +39,6 @@ class StationPathService
             $course->setAttribute('group', $course->group);
         }
 
-        return $timetable->toArray();
+        return $timetable->sortBy('departure_time')->toArray();
     }
 }
