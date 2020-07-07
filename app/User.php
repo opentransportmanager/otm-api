@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon as Carbon;
 use Laravel\Sanctum\HasApiTokens;
 use Silber\Bouncer\Database\HasRolesAndAbilities;
+use Spatie\QueryBuilder\QueryBuilder;
 
 /**
  * User model.
@@ -39,4 +40,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Returns QueryBuilder instance along with applied filters and sorts.
+     */
+    public static function filter(): QueryBuilder
+    {
+        return QueryBuilder::for(static::class)
+            ->allowedFilters(['email', 'name'])
+            ->allowedSorts('id', 'email', 'name');
+    }
 }

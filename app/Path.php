@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 /**
  * Path model.
@@ -36,8 +38,16 @@ class Path extends Model
     ];
 
     /**
-     * Returns an instance of (many-to-many) relation with Station model.
+     * Returns QueryBuilder instance along with applied filters and sorts.
      */
+    public static function filter(): QueryBuilder
+    {
+        return QueryBuilder::for(static::class)
+            ->allowedFilters([AllowedFilter::exact('busline_id')])
+            ->allowedSorts('id', 'busline_id')
+            ->allowedIncludes('courses', 'buslines');
+    }
+
     public function stations(): BelongsToMany
     {
         return $this->belongsToMany(Station::class)

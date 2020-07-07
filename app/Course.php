@@ -7,6 +7,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon as Carbon;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 /**
  * Course model.
@@ -37,6 +39,17 @@ class Course extends Model
     protected $with = [
         'group',
     ];
+
+    /**
+     * Returns QueryBuilder instance along with applied filters and sorting.
+     */
+    public static function filter(): QueryBuilder
+    {
+        return QueryBuilder::for(static::class)
+            ->allowedFilters([AllowedFilter::exact('path_id'), AllowedFilter::exact('number')], 'start_time')
+            ->allowedSorts('id', 'path_id', 'group_id', 'start_time')
+            ->allowedIncludes('groups', 'paths');
+    }
 
     /**
      * Returns a 'start_time' attribute formatted to Hours:Minutes format.

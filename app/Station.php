@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Carbon as Carbon;
 use Illuminate\Support\Collection;
+use Spatie\QueryBuilder\QueryBuilder;
 
 /**
  * Station model.
@@ -39,6 +40,16 @@ class Station extends Model
         'created_at',
         'updated_at',
     ];
+
+    /**
+     * Returns QueryBuilder instance along with applied filters and sorts.
+     */
+    public static function filter(): QueryBuilder
+    {
+        return QueryBuilder::for(static::class)
+            ->allowedFilters(['name', 'position'])
+            ->allowedSorts('id', 'name', 'position');
+    }
 
     /**
      * Transforms input location data to Point object.

@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon as Carbon;
 use Illuminate\Support\Collection;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 /**
  * Group model.
@@ -27,6 +29,14 @@ class Group extends Model
         'created_at',
         'updated_at',
     ];
+
+    public static function filter(): QueryBuilder
+    {
+        return QueryBuilder::for(static::class)
+            ->allowedFilters([AllowedFilter::exact('busline_id')])
+            ->allowedSorts('id', 'busline_id')
+            ->allowedIncludes('courses', 'courses.paths');
+    }
 
     /**
      * Returns an instance of (one-to-many) relation with Busline class.
