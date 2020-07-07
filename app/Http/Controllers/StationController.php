@@ -17,7 +17,7 @@ class StationController extends Controller
      */
     public function index(): JsonResponse
     {
-        $stations = Station::all();
+        $stations = Station::filter()->get();
 
         return response()->json($stations, Response::HTTP_OK);
     }
