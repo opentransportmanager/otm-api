@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon as Carbon;
@@ -49,5 +50,13 @@ class User extends Authenticatable
         return QueryBuilder::for(static::class)
             ->allowedFilters(['email', 'name'])
             ->allowedSorts('id', 'email', 'name');
+    }
+  
+    /**
+     * Returns an instance of (many-to-many) relation with Busline model.
+     */
+    public function buslines(): BelongsToMany
+    {
+        return $this->belongsToMany(Busline::class);
     }
 }

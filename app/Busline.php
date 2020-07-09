@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon as Carbon;
 use Illuminate\Support\Collection;
@@ -47,5 +48,13 @@ class Busline extends Model
     public function paths(): HasMany
     {
         return $this->hasMany(Path::class);
+    }
+
+    /**
+     * Returns an instance of (many-to-many) relation with User model.
+     */
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class);
     }
 }

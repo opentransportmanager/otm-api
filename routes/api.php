@@ -33,6 +33,11 @@ Route::get('/stations/{station}/paths', 'StationPathController@showAttachedPaths
 Route::get('/stations/{station}/paths/{path}', 'StationPathController@showTimetable');
 
 Route::middleware('auth:sanctum')->group(function (): void {
+
+    Route::get('/buslines/user/subscriptions', 'BuslineUserController@userSubscribedBuslines');
+    Route::post('/buslines/subscribe', 'BuslineUserController@subscribe');
+    Route::delete('/buslines/unsubscribe', 'BuslineUserController@unsubscribe');
+
     Route::group(['middleware' => 'can:manage, App\Role'], function () {
         Route::get('/roles/assign/{user}', 'RoleController@assignRole');
         Route::delete('/roles/retract/{user}', 'RoleController@retractRole');
