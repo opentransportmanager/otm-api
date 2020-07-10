@@ -45,7 +45,7 @@ class Path extends Model
         return QueryBuilder::for(static::class)
             ->allowedFilters([AllowedFilter::exact('busline_id')])
             ->allowedSorts('id', 'busline_id')
-            ->allowedIncludes('courses', 'buslines');
+            ->allowedIncludes('courses', 'busline', 'stations');
     }
 
     public function stations(): BelongsToMany
