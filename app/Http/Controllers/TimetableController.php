@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Services\TimetableService;
 use App\Timetable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
@@ -27,11 +28,13 @@ class TimetableController extends Controller
     }
 
     /**
-     * Fetches current timetable version data.
+     * Fetches current timetable data.
      */
-    public function fetch(): JsonResponse
+    public function fetch(TimetableService $timetableService): JsonResponse
     {
-        return response()->json([], Response::HTTP_NOT_IMPLEMENTED);
+        $timetable = $timetableService->fetch();
+
+        return response()->json($timetable);
     }
 
     /**

@@ -48,7 +48,8 @@ class Station extends Model
     {
         return QueryBuilder::for(static::class)
             ->allowedFilters(['name', 'position'])
-            ->allowedSorts('id', 'name', 'position');
+            ->allowedSorts('id', 'name', 'position')
+            ->allowedIncludes('paths');
     }
 
     /**
