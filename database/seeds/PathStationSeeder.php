@@ -15,14 +15,21 @@ class PathStationSeeder extends Seeder
     {
         $station_ids = Station::all()->pluck('id');
 
-        Path::all()->each(function (Path $path) use ($station_ids): void {
-            $random_station_ids = $station_ids->random(rand(6, 12));
-            foreach ($random_station_ids as $station_id) {
+        Path::all()->each(
+            function (Path $path) use ($station_ids): void {
+                $first_station_id = $station_ids->random();
                 $path->stations()->attach(
-                    $station_id,
-                    ['travel_time' => rand(0, 30)]
+                    $first_station_id,
+                    ['travel_time' => 0]
                 );
+                $random_station_ids = $station_ids->random(rand(2, 4));
+                foreach ($random_station_ids as $station_id) {
+                    $path->stations()->attach(
+                        $station_id,
+                        ['travel_time' => rand(1, 10)]
+                    );
+                }
             }
-        });
+        );
     }
 }

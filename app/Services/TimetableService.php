@@ -14,9 +14,7 @@ class TimetableService
     public function fetch(): array
     {
         $timetable = Path::with('stations')->with('courses')->get();
-
         foreach ($timetable as $path) {
-            //$path->setAttribute('courses', $path->courses());
             foreach ($path->stations as $station) {
                 $station->setAttribute('travel_time', $station->pivot->travel_time);
             }
