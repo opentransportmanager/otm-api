@@ -17,12 +17,11 @@ class PathStationSeeder extends Seeder
 
         Path::all()->each(
             function (Path $path) use ($station_ids): void {
-                $first_station_id = $station_ids->random();
+                $random_station_ids = $station_ids->random(rand(3, 5));
                 $path->stations()->attach(
-                    $first_station_id,
+                    $random_station_ids->pop(),
                     ['travel_time' => 0]
                 );
-                $random_station_ids = $station_ids->random(rand(2, 4));
                 foreach ($random_station_ids as $station_id) {
                     $path->stations()->attach(
                         $station_id,
