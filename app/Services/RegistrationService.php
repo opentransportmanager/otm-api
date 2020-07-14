@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\User;
 use Illuminate\Support\Facades\Hash;
+use Silber\Bouncer\BouncerFacade as Bouncer;
 
 class RegistrationService
 {
@@ -18,7 +19,7 @@ class RegistrationService
         ];
 
         $createdUser = User::create($user);
-        $createdUser->assign('user');
+        Bouncer::allow($createdUser)->toManage($createdUser);
         return ($createdUser);
     }
 }

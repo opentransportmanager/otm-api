@@ -13,6 +13,11 @@ use Illuminate\Http\Response;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(User::class);
+    }
+
     /**
      * Lists all resources.
      */
