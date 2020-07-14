@@ -4,12 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreUser;
 use App\Http\Requests\UpdateUser;
-use App\Services\RegistrationService;
 use App\User;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Response;
 
 class UserController extends Controller
 {
@@ -26,16 +23,6 @@ class UserController extends Controller
         $users = User::all();
 
         return response()->json($users);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreUser $request, RegistrationService $service): JsonResponse
-    {
-        $service->registerUser($request->validated());
-
-        return response()->json(['message' => __('messages.user.created')], Response::HTTP_CREATED);
     }
 
     /**

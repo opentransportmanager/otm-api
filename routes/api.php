@@ -21,7 +21,7 @@ Route::get('/', function (): void {
 
 Route::get('/docs', 'DocsController@docs');
 Route::post('/login', 'AuthenticationController@login')->name('login');
-Route::post('/register', 'UserController@store');
+Route::post('/register', 'AuthenticationController@register');
 Route::apiResource('/stations', 'StationController')->only(['index', 'show']);
 Route::apiResource('/buslines', 'BuslineController')->only(['index', 'show']);
 Route::apiResource('/groups', 'GroupController')->only(['index', 'show']);
