@@ -29,11 +29,13 @@ class AuthenticationController extends Controller
      * Store a newly created resource in storage.
      * @param StoreUser $request
      * @param RegistrationService $service
+     * @param AuthenticationService $authService
      */
-    public function register(StoreUser $request, RegistrationService $service): JsonResponse
+    public function register(StoreUser $request, RegistrationService $service, AuthenticationService $authService): JsonResponse
     {
         $service->registerUser($request->validated());
+        $response = $authService->createToken($request->validated());
 
-        return response()->json(['message' => __('messages.user.created')], Response::HTTP_CREATED);
+        return response()->json(['message' => __('messages.user.created'), 'authUser' => $response], Response::HTTP_CREATED);
     }
 }
