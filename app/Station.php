@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App;
 
+use App\Events\StationDeleted;
 use Grimzy\LaravelMysqlSpatial\Eloquent\SpatialTrait;
 use Grimzy\LaravelMysqlSpatial\Types\Point;
 use Illuminate\Database\Eloquent\Model;
@@ -38,6 +39,10 @@ class Station extends Model
         'pivot',
         'created_at',
         'updated_at',
+    ];
+
+    protected $dispatchesEvents = [
+        'deleting' => StationDeleted::class,
     ];
 
     /**

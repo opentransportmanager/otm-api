@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App;
 
+use App\Events\PathDeleted;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -33,6 +34,10 @@ class Path extends Model
         'updated_at',
         'pivot',
         'busline',
+    ];
+
+    protected $dispatchesEvents = [
+        'deleting' => PathDeleted::class,
     ];
 
     /**
