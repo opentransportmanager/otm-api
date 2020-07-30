@@ -22,7 +22,7 @@ class StationPathService
             $path->setAttribute('busline_number', $path->busline->number);
         }
 
-        return $paths->toArray();
+        return $paths->sortBy('busline_number')->values()->toArray();
     }
 
     /**
@@ -39,6 +39,6 @@ class StationPathService
             $course->setAttribute('group', $course->group);
         }
 
-        return $timetable->toArray();
+        return $timetable->sortBy('departure_time')->values()->toArray();
     }
 }

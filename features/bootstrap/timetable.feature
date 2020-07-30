@@ -8,13 +8,15 @@ Feature: Showing timetables
         Given client is authorized to do an action
         And "POST" is being sent to "/paths/1/stations"
         And required 1 "Busline" object is already existing
-        And required 3 "Station" objects are already existing
+        And required 5 "Station" objects are already existing
         And required 1 "Path" object is already existing
         And my request data contains array:
             | id | travel_time |
             | 1  | 10          |
             | 2  | 15          |
             | 3  | 20          |
+            | 4  | 25          |
+            | 5  | 30          |
         When request is sent
         Then response should be of type "Illuminate\Http\JsonResponse"
         And response code should be equal to 201
@@ -38,3 +40,15 @@ Feature: Showing timetables
         When request is sent
         Then response should be of type "Illuminate\Http\JsonResponse"
         And response code should be equal to 200
+
+    @api @timetable @protected @success
+    Scenario Outline: Deleting selected Station data when Path is still attached
+        Given client is authorized to do an action
+        And "DELETE" is being sent to "/stations/<id>"
+        When request is sent
+        Then response should be of type "\Illuminate\Http\JsonResponse"
+        And response code should be equal to 200
+        Examples:
+            | id |
+            | 4  |
+            | 5  |

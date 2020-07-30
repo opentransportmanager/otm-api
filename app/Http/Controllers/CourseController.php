@@ -17,7 +17,7 @@ class CourseController extends Controller
      */
     public function index(): JsonResponse
     {
-        $courses = Course::all();
+        $courses = Course::filter()->get();
 
         return response()->json($courses);
     }

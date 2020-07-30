@@ -17,7 +17,7 @@ class GroupController extends Controller
      */
     public function index(): JsonResponse
     {
-        $groups = Group::all();
+        $groups = Group::filter()->get();
 
         return response()->json($groups);
     }

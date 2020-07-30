@@ -17,7 +17,7 @@ class PathController extends Controller
      */
     public function index(): JsonResponse
     {
-        $paths = Path::all();
+        $paths = Path::filter()->get();
 
         return response()->json($paths);
     }

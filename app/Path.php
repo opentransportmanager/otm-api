@@ -4,12 +4,15 @@ declare(strict_types=1);
 
 namespace App;
 
+use App\Events\PathDeleted;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 /**
  * Path model.
@@ -35,9 +38,21 @@ class Path extends Model
         'busline',
     ];
 
+    protected $dispatchesEvents = [
+        'deleting' => PathDeleted::class,
+    ];
+
     /**
-     * Returns an instance of (many-to-many) relation with Station model.
+     * Returns QueryBuilder instance along with applied filters and sorts.
      */
+    public static function filter(): QueryBuilder
+    {
+        return QueryBuilder::for(static::class)
+            ->allowedFilters([AllowedFilter::exact('busline_id')])
+            ->allowedSorts('id', 'busline_id')
+            ->allowedIncludes('courses', 'busline', 'stations');
+    }
+
     public function stations(): BelongsToMany
     {
         return $this->belongsToMany(Station::class)

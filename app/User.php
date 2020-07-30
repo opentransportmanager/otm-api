@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon as Carbon;
 use Laravel\Sanctum\HasApiTokens;
 use Silber\Bouncer\Database\HasRolesAndAbilities;
+use Spatie\QueryBuilder\QueryBuilder;
 
 /**
  * User model.
@@ -39,4 +41,22 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Returns QueryBuilder instance along with applied filters and sorts.
+     */
+    public static function filter(): QueryBuilder
+    {
+        return QueryBuilder::for(static::class)
+            ->allowedFilters(['email', 'name'])
+            ->allowedSorts('id', 'email', 'name');
+    }
+  
+    /**
+     * Returns an instance of (many-to-many) relation with Busline model.
+     */
+    public function buslines(): BelongsToMany
+    {
+        return $this->belongsToMany(Busline::class);
+    }
 }

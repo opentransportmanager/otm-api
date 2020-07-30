@@ -12,7 +12,7 @@ class CourseSeeder extends Seeder
      */
     public function run(): void
     {
-        factory(Course::class, 500)->create()->each(function (Course $course): void {
+        factory(Course::class, 1000)->create()->each(function (Course $course): void {
             $course->save();
         });
     }

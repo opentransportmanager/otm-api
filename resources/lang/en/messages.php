@@ -37,4 +37,9 @@ return [
         'assigned' => 'Role has been assigned successfully',
         'retracted' => 'Role has been retracted successfully',
     ],
+    'busline_user' => [
+        'subscribed' => 'Busline subscribed successfully',
+        'unsubscribed' => 'Busline unsubscribed successfully',
+        'notunsubscribed' => 'Subscription not found',
+    ],
 ];

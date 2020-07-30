@@ -107,6 +107,14 @@ class RequestContext implements Context
     }
 
     /**
+     * @Then table :table should be empty
+     */
+    public function tableShouldBeEmpty(string $table): void
+    {
+        Assert::assertEmpty(DB::table($table)->get());
+    }
+
+    /**
      * @Given the table :table contains :id
      */
     public function theTableContains(string $table, int $id): void

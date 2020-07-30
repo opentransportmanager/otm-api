@@ -17,7 +17,7 @@ class BuslineController extends Controller
      */
     public function index(): JsonResponse
     {
-        $buslines = Busline::all();
+        $buslines = Busline::filter()->get();
 
         return response()->json($buslines);
     }
