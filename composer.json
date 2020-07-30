@@ -17,7 +17,8 @@
         "laravel/sanctum": "^2.3",
         "laravel/tinker": "^2.0",
         "silber/bouncer": "v1.0.0-rc.8",
-        "spatie/laravel-backup": "^6.11"
+        "spatie/laravel-backup": "^6.11",
+        "spatie/laravel-query-builder": "^2.8"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
