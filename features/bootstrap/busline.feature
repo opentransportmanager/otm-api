@@ -75,3 +75,15 @@ Feature: Managing Busline data
             | 3  |
             | 4  |
             | 5  |
+
+    @api @busline @protected @success
+    Scenario: Deleting selected Busline data when Paths are attached
+        Given client is authorized to do an action
+        And "DELETE" is being sent to "/buslines/6"
+        And required 1 "Busline" object is already existing
+        And required 2 "Path" objects are already existing
+        When request is sent
+        Then response should be of type "\Illuminate\Http\JsonResponse"
+        And table "buslines" should be empty
+        And table "paths" should be empty
+        And response code should be equal to 200

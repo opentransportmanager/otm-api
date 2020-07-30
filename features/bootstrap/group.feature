@@ -76,3 +76,17 @@ Feature: Managing Group data
             | 3  |
             | 4  |
             | 5  |
+
+    @api @group @protected @success
+    Scenario: Deleting selected Group data when Courses are attached
+        Given client is authorized to do an action
+        And "DELETE" is being sent to "/groups/6"
+        And required 1 "Group" object is already existing
+        And required 1 "Busline" object is already existing
+        And required 1 "Path" object is already existing
+        And required 2 "Course" objects are already existing
+        When request is sent
+        Then response should be of type "\Illuminate\Http\JsonResponse"
+        And table "groups" should be empty
+        And table "courses" should be empty
+        And response code should be equal to 200

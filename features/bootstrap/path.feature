@@ -76,3 +76,17 @@ Feature: Managing Path data
             | 3  |
             | 4  |
             | 5  |
+
+    @api @busline @protected @success
+    Scenario: Deleting selected Path data when Courses and Busline are attached
+        Given client is authorized to do an action
+        And "DELETE" is being sent to "/paths/6"
+        And required 1 "Busline" object is already existing
+        And required 1 "Path" object is already existing
+        And required 1 "Group" object is already existing
+        And required 2 "Course" objects are already existing
+        When request is sent
+        Then response should be of type "\Illuminate\Http\JsonResponse"
+        And table "paths" should be empty
+        And table "courses" should be empty
+        And response code should be equal to 200
