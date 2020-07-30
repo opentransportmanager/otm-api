@@ -41,9 +41,9 @@ In your .env file set:
 APP_ENV=testing
 ```
 
-Then run setup service again:
+Then restart setup service:
 ```
-docker-compose up setup
+docker-compose restart setup
 ```
 ### Development
 ##### Using terminal inside container
