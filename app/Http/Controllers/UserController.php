@@ -18,7 +18,7 @@ class UserController extends Controller
      */
     public function index(): JsonResponse
     {
-        $users = User::all();
+        $users = User::filter()->get();
 
         return response()->json($users);
     }
@@ -38,7 +38,7 @@ class UserController extends Controller
      */
     public function show(User $user): JsonResponse
     {
-        return response()->json([$user]);
+        return response()->json($user);
     }
 
     /**

@@ -31,6 +31,7 @@ Route::apiResource('/courses', 'CourseController')->only(['index', 'show']);
 Route::get('/paths/{path}/stations', 'PathStationController@showAttachedStations');
 Route::get('/stations/{station}/paths', 'StationPathController@showAttachedPaths');
 Route::get('/stations/{station}/paths/{path}', 'StationPathController@showTimetable');
+Route::get('/timetable/fetch', 'TimetableController@fetch');
 
 Route::middleware('auth:sanctum')->group(function (): void {
 

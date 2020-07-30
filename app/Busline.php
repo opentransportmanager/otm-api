@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon as Carbon;
 use Illuminate\Support\Collection;
+use Spatie\QueryBuilder\QueryBuilder;
 
 /**
  * Busline model.
@@ -34,6 +35,17 @@ class Busline extends Model
     protected $dispatchesEvents = [
         'deleting' => BuslineDeleted::class,
     ];
+
+    /**
+     * Returns QueryBuilder instance along with applied filters and sorts.
+     */
+    public static function filter(): QueryBuilder
+    {
+        return QueryBuilder::for(static::class)
+            ->allowedFilters(['number'])
+            ->allowedSorts('id', 'number')
+            ->allowedIncludes('paths', 'paths.courses');
+    }
 
     /**
      * Returns an instance of (one-to-many) relation with Busline class.
