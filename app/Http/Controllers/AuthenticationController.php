@@ -18,7 +18,9 @@ class AuthenticationController extends Controller
     public function login(AuthenticationRequest $request, AuthenticationService $service): JsonResponse
     {
         $response = $service->createToken($request->validated());
-
+        if($response)
         return response()->json($response, Response::HTTP_OK);
+        else
+        return response()->json(['message' => __('auth.failed')], Response::HTTP_UNAUTHORIZED);
     }
 }
